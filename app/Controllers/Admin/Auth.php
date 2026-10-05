@@ -54,7 +54,9 @@ class Auth extends BaseController
 
         $model->update($user['id'], ['last_login_at' => date('Y-m-d H:i:s')]);
 
-        $intended = (string) session()->pull('admin_intended_path');
+        $intended = (string) session()->get('admin_intended_path');
+        session()->remove('admin_intended_path');
+
         if ($intended !== '' && str_starts_with($intended, '/admin')) {
             return redirect()->to(site_url(ltrim($intended, '/')));
         }
