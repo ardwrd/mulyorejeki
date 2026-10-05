@@ -1,20 +1,6 @@
-/* UI refinement: keep labels and copy understated, functional, and retail-oriented. */
+/* UI refinement: keep the layout straightforward and product-focused. */
 .eyebrow {
-  display: block;
-  color: #646b74;
-  font-size: .78rem;
-  font-weight: 650;
-  letter-spacing: .015em;
-  line-height: 1.4;
-  text-transform: none;
-}
-
-.eyebrow span {
   display: none !important;
-}
-
-.eyebrow.light {
-  color: #adb4bc;
 }
 
 .hero-title {
