@@ -1,5 +1,6 @@
 <?php
 
+use CodeIgniter\Exceptions\PageNotFoundException;
 use CodeIgniter\Test\CIUnitTestCase;
 use CodeIgniter\Test\FeatureTestTrait;
 
@@ -37,10 +38,9 @@ final class CatalogPagesTest extends CIUnitTestCase
         $result->assertSee('Spesifikasi');
     }
 
-    public function testUnknownProductReturns404(): void
+    public function testUnknownProductThrowsPageNotFound(): void
     {
-        $result = $this->get('/products/produk-tidak-ada');
-
-        $result->assertStatus(404);
+        $this->expectException(PageNotFoundException::class);
+        $this->get('/products/produk-tidak-ada');
     }
 }
