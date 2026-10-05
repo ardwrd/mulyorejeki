@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Katalog Produk — Mulyorejeki</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top">
+    <div class="container py-2">
+      <a class="navbar-brand brand-lockup" href="index.html"><span class="brand-mark">MR</span><span><strong>MULYOREJEKI</strong><small>TOKO TEKNIK</small></span></a>
+      <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+          <li class="nav-item"><a class="nav-link" href="index.html">Beranda</a></li>
+          <li class="nav-item"><a class="nav-link active" href="catalog.html">Produk</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#categories">Kategori</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html#brands">Brand</a></li>
+          <li class="nav-item ms-lg-2"><a class="btn btn-dark btn-sm px-3" href="index.html#contact"><i class="bi bi-chat-left-text me-2"></i>Hubungi Kami</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="page-hero">
+    <div class="container">
+      <div class="eyebrow mb-2"><span></span> KATALOG PRODUK</div>
+      <div class="row align-items-end g-3">
+        <div class="col-lg-7"><h1>Temukan kebutuhan teknik Anda.</h1></div>
+        <div class="col-lg-5"><p class="text-secondary mb-0">Prototype ini menggunakan data dummy. Nantinya produk, kategori, brand, spesifikasi, dan foto akan diambil dari database.</p></div>
+      </div>
+    </div>
+  </header>
+
+  <div class="catalog-toolbar py-3">
+    <div class="container">
+      <div class="row g-2 align-items-center">
+        <div class="col-lg-5">
+          <div class="search-box m-0">
+            <i class="bi bi-search"></i>
+            <input id="catalogSearch" type="search" class="form-control" placeholder="Cari nama produk atau brand...">
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <div class="d-flex gap-2 flex-wrap justify-content-lg-end" id="categoryFilters">
+            <a href="#" class="filter-chip active" data-filter="all">Semua</a>
+            <a href="#" class="filter-chip" data-filter="pompa">Pompa</a>
+            <a href="#" class="filter-chip" data-filter="power-tools">Power Tools</a>
+            <a href="#" class="filter-chip" data-filter="fastener">Fastener</a>
+            <a href="#" class="filter-chip" data-filter="hand-tools">Hand Tools</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="section-space">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <span class="text-secondary small"><strong id="resultCount">8</strong> produk ditemukan</span>
+        <select class="form-select form-select-sm" style="width:auto" aria-label="Urutkan produk">
+          <option>Terbaru</option><option>Nama A–Z</option><option>Brand A–Z</option>
+        </select>
+      </div>
+
+      <div class="row g-4" id="productGrid">
+        <div class="col-6 col-lg-3 catalog-item" data-category="power-tools" data-search="makita angle grinder 720 watt power tools">
+          <article class="product-card catalog-card h-100"><a href="product.html" class="product-visual"><span class="product-badge">Unggulan</span><i class="bi bi-lightning-charge"></i></a><div class="product-body"><span class="product-brand">MAKITA</span><h3><a href="product.html">Angle Grinder 100 mm</a></h3><p class="product-meta">Power Tools · 720 W</p><a href="product.html" class="product-link">Lihat detail <i class="bi bi-arrow-right"></i></a></div></article>
+        </div>
+        <div class="col-6 col-lg-3 catalog-item" data-category="pompa" data-search="ebara pompa centrifugal stainless steel pump">
+          <article class="product-card catalog-card h-100"><a href="product.html" class="product-visual"><i class="bi bi-droplet-half"></i></a><div class="product-body"><span class="product-brand">EBARA</span><h3><a href="product.html">Pompa Centrifugal</a></h3><p class="product-meta">Pompa · Stainless Steel</p><a href="product.html" class="product-link">Lihat detail <i class="bi bi-arrow-right"></i></a></div></article>
+        </div>
+        <div class="col-6 col-lg-3 catalog-item" data-category="hand-tools" data-search="tekiro combination wrench set metric hand tools kunci">
+          <article class="product-card catalog-card h-100"><a href="product.html" class="product-visual"><i class="bi bi-wrench-adjustable"></i></a><div class="product-body"><span class="product-brand">TEKIRO</span><h3><a href="product.html">Combination Wrench Set</a></h3><p class="product-meta">Hand Tools · Metric</p><a href="product.html" class="product-link">Lihat detail <i class="bi bi-arrow-right"></i></a></div></article>
+        </div>
+        <div class="col-6 col-lg-3 catalog-item" data-category="fastener" data-search="hex bolt grade 8.8 baut mur fastener m6 m20">
+          <article class="product-card catalog-card h-100"><a href="product.html" class="product-visual"><i class="bi bi-nut"></i></a><div class="product-body"><span class="product-brand">GENERIC</span><h3><a href="product.html">Hex Bolt Grade 8.8</a></h3><p class="product-meta">Fastener · M6–M20</p><a href="product.html" class="product-link">Lihat detail <i class="bi bi-arrow-right"></i></a></div></article>
+        </div>
+        <div class="col-6 col-lg-3 catalog-item" data-category="power-tools" data-search="bosch electric drill impact bor listrik 550 watt">
+          <article class="product-card catalog-card h-100"><a href="product.html" class="product-visual"><i class="bi bi-tools"></i></a><div class="product-body"><span class="product-brand">BOSCH</span><h3><a href="product.html">Impact Drill 13 mm</a></h3><p class="product-meta">Power Tools · 550 W</p><a href="product.html" class="product-link">Lihat detail <i class="bi bi-arrow-right"></i></a></div></article>
+        </div>
+        <div class="col-6 col-lg-3 catalog-item" data-category="pompa" data-search="grundfos booster pump pompa booster pressure">
+          <article class="product-card catalog-card h-100"><a href="product.html" class="product-visual"><i class="bi bi-water"></i></a><div class="product-body"><span class="product-brand">GRUNDFOS</span><h3><a href="product.html">Booster Pump</a></h3><p class="product-meta">Pompa · Automatic</p><a href="product.html" class="product-link">Lihat detail <i class="bi bi-arrow-right"></i></a></div></article>
+        </div>
+        <div class="col-6 col-lg-3 catalog-item" data-category="hand-tools" data-search="tang kombinasi pliers hand tools tekiro">
+          <article class="product-card catalog-card h-100"><a href="product.html" class="product-visual"><i class="bi bi-tools"></i></a><div class="product-body"><span class="product-brand">TEKIRO</span><h3><a href="product.html">Combination Pliers 8 inch</a></h3><p class="product-meta">Hand Tools · 8 inch</p><a href="product.html" class="product-link">Lihat detail <i class="bi bi-arrow-right"></i></a></div></article>
+        </div>
+        <div class="col-6 col-lg-3 catalog-item" data-category="fastener" data-search="stainless steel washer ring fastener m8 m10 m12">
+          <article class="product-card catalog-card h-100"><a href="product.html" class="product-visual"><i class="bi bi-circle"></i></a><div class="product-body"><span class="product-brand">GENERIC</span><h3><a href="product.html">Stainless Washer</a></h3><p class="product-meta">Fastener · M8–M12</p><a href="product.html" class="product-link">Lihat detail <i class="bi bi-arrow-right"></i></a></div></article>
+        </div>
+      </div>
+
+      <div id="emptyState" class="empty-state d-none mt-4">
+        <i class="bi bi-search fs-2 text-secondary"></i>
+        <h3 class="h5 mt-3">Produk tidak ditemukan</h3>
+        <p class="text-secondary mb-0">Coba kata kunci atau kategori lain.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer py-4"><div class="container d-flex flex-column flex-sm-row justify-content-between gap-2 small footer-bottom"><span>© 2026 Mulyorejeki.</span><a href="index.html">Kembali ke beranda</a></div></footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
