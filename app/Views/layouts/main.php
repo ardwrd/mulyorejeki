@@ -10,6 +10,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
   <link rel="stylesheet" href="<?= base_url('assets/css/styles.css') ?>">
   <link rel="stylesheet" href="<?= base_url('assets/css/refinement.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('assets/css/product-images.css') ?>">
 </head>
 <body>
   <div class="topbar py-2 d-none d-md-block">
