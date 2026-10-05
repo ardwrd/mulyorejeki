@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - feature/ci4-bootstrap
+      - 'feature/**'
   pull_request:
     branches:
       - main
@@ -24,6 +24,7 @@ jobs:
         with:
           php-version: '8.3'
           tools: composer:v2
+          extensions: sqlite3, pdo_sqlite
           coverage: none
 
       - name: Validate Composer

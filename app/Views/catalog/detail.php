@@ -14,8 +14,13 @@
 
     <div class="row g-5 align-items-start">
       <div class="col-lg-6">
-        <div class="product-detail-visual"><i class="bi <?= esc($product['icon']) ?>"></i></div>
-        <div class="small text-secondary mt-2">Gambar produk sementara sebagai ilustrasi.</div>
+        <div class="product-detail-visual">
+          <?php if (! empty($product['image_url'])): ?>
+            <img src="<?= esc($product['image_url']) ?>" alt="<?= esc($product['name']) ?>">
+          <?php else: ?>
+            <i class="bi <?= esc($product['icon']) ?>"></i>
+          <?php endif ?>
+        </div>
       </div>
 
       <div class="col-lg-6">
@@ -25,7 +30,7 @@
         <div class="d-flex gap-2 flex-wrap my-4">
           <span class="filter-chip active"><?= esc($product['brand']) ?></span>
           <span class="filter-chip"><?= esc($product['category_label']) ?></span>
-          <span class="filter-chip"><?= esc($product['meta']) ?></span>
+          <?php if ($product['meta'] !== ''): ?><span class="filter-chip"><?= esc($product['meta']) ?></span><?php endif ?>
         </div>
 
         <div class="inquiry-box mb-4">
@@ -43,12 +48,14 @@
           <a href="<?= site_url('products') ?>" class="btn btn-outline-dark btn-lg px-4">Kembali ke Katalog</a>
         </div>
 
-        <h2 class="h5 fw-bold mb-3">Spesifikasi</h2>
-        <div class="spec-table">
-          <?php foreach ($product['specs'] as $label => $value): ?>
-            <div class="spec-row"><span><?= esc($label) ?></span><span><?= esc($value) ?></span></div>
-          <?php endforeach ?>
-        </div>
+        <?php if ($product['specs'] !== []): ?>
+          <h2 class="h5 fw-bold mb-3">Spesifikasi</h2>
+          <div class="spec-table">
+            <?php foreach ($product['specs'] as $label => $value): ?>
+              <div class="spec-row"><span><?= esc($label) ?></span><span><?= esc($value) ?></span></div>
+            <?php endforeach ?>
+          </div>
+        <?php endif ?>
       </div>
     </div>
   </div>
@@ -62,11 +69,17 @@
       <?php foreach ($relatedProducts as $related): ?>
         <div class="col-6 col-lg-3">
           <article class="product-card h-100">
-            <a href="<?= site_url('products/' . $related['slug']) ?>" class="product-visual"><i class="bi <?= esc($related['icon']) ?>"></i></a>
+            <a href="<?= site_url('products/' . $related['slug']) ?>" class="product-visual">
+              <?php if (! empty($related['image_url'])): ?>
+                <img src="<?= esc($related['image_url']) ?>" alt="<?= esc($related['name']) ?>" loading="lazy">
+              <?php else: ?>
+                <i class="bi <?= esc($related['icon']) ?>"></i>
+              <?php endif ?>
+            </a>
             <div class="product-body">
               <span class="product-brand"><?= esc(strtoupper($related['brand'])) ?></span>
               <h3><a href="<?= site_url('products/' . $related['slug']) ?>"><?= esc($related['name']) ?></a></h3>
-              <p class="product-meta"><?= esc($related['category_label']) ?> · <?= esc($related['meta']) ?></p>
+              <p class="product-meta"><?= esc($related['category_label']) ?><?= $related['meta'] !== '' ? ' · ' . esc($related['meta']) : '' ?></p>
             </div>
           </article>
         </div>

@@ -44,12 +44,16 @@
           <article class="product-card catalog-card h-100">
             <a href="<?= site_url('products/' . $product['slug']) ?>" class="product-visual">
               <?php if (! empty($product['badge'])): ?><span class="product-badge"><?= esc($product['badge']) ?></span><?php endif ?>
-              <i class="bi <?= esc($product['icon']) ?>"></i>
+              <?php if (! empty($product['image_url'])): ?>
+                <img src="<?= esc($product['image_url']) ?>" alt="<?= esc($product['name']) ?>" loading="lazy">
+              <?php else: ?>
+                <i class="bi <?= esc($product['icon']) ?>"></i>
+              <?php endif ?>
             </a>
             <div class="product-body">
               <span class="product-brand"><?= esc(strtoupper($product['brand'])) ?></span>
               <h3><a href="<?= site_url('products/' . $product['slug']) ?>"><?= esc($product['name']) ?></a></h3>
-              <p class="product-meta"><?= esc($product['category_label']) ?> · <?= esc($product['meta']) ?></p>
+              <p class="product-meta"><?= esc($product['category_label']) ?><?= $product['meta'] !== '' ? ' · ' . esc($product['meta']) : '' ?></p>
               <a href="<?= site_url('products/' . $product['slug']) ?>" class="product-link">Lihat detail <i class="bi bi-arrow-right"></i></a>
             </div>
           </article>
