@@ -1,0 +1,51 @@
+name: Bootstrap CodeIgniter 4
+
+on:
+  push:
+    branches:
+      - feature/ci4-bootstrap
+    paths:
+      - .github/workflows/bootstrap-ci4.yml
+
+permissions:
+  contents: write
+
+jobs:
+  bootstrap:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: feature/ci4-bootstrap
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          tools: composer:v2
+          coverage: none
+
+      - name: Create CodeIgniter appstarter
+        run: composer create-project codeigniter4/appstarter ci4-starter 4.7.4 --no-interaction --prefer-dist
+
+      - name: Copy starter into repository
+        run: |
+          rsync -a ci4-starter/ ./ \
+            --exclude '.git/' \
+            --exclude '.github/' \
+            --exclude 'README.md' \
+            --exclude 'vendor/'
+          rm -rf ci4-starter
+
+      - name: Commit framework scaffold
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: bootstrap CodeIgniter 4.7.4"
+            git push origin HEAD:feature/ci4-bootstrap
+          fi
