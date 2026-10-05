@@ -9,6 +9,8 @@ class CatalogSeeder extends Seeder
 {
     public function run(): void
     {
+        helper('url');
+
         $now = date('Y-m-d H:i:s');
 
         $categoryIds = [];
