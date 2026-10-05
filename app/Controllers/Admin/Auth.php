@@ -57,7 +57,7 @@ class Auth extends BaseController
         $intended = (string) session()->get('admin_intended_path');
         session()->remove('admin_intended_path');
 
-        if ($intended !== '' && str_starts_with($intended, '/admin')) {
+        if ($intended !== '' && preg_match('#^/?admin(?:/|$)#', $intended) === 1) {
             return redirect()->to(site_url(ltrim($intended, '/')));
         }
 
