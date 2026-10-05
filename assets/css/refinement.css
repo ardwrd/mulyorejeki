@@ -1,0 +1,49 @@
+/* UI refinement: keep labels and copy understated, functional, and retail-oriented. */
+.eyebrow {
+  display: block;
+  color: #646b74;
+  font-size: .78rem;
+  font-weight: 650;
+  letter-spacing: .015em;
+  line-height: 1.4;
+  text-transform: none;
+}
+
+.eyebrow span {
+  display: none !important;
+}
+
+.eyebrow.light {
+  color: #adb4bc;
+}
+
+.hero-title {
+  max-width: 760px;
+}
+
+.hero-trust strong {
+  font-size: 1rem;
+  font-weight: 750;
+}
+
+.hero-trust span {
+  font-size: .8rem;
+  line-height: 1.45;
+}
+
+.product-badge {
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.product-brand,
+.brand-grid div,
+.footer h6 {
+  letter-spacing: .035em;
+}
+
+@media (max-width: 575.98px) {
+  .hero-title {
+    letter-spacing: -.035em;
+  }
+}
