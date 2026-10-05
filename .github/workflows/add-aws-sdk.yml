@@ -1,0 +1,38 @@
+name: Add AWS SDK
+
+on:
+  push:
+    branches:
+      - feature/catalog-backend
+    paths:
+      - .github/workflows/add-aws-sdk.yml
+
+permissions:
+  contents: write
+
+jobs:
+  composer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: feature/catalog-backend
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          tools: composer:v2
+          coverage: none
+
+      - name: Add AWS SDK for Cloudflare R2
+        run: composer require aws/aws-sdk-php:^3.0 --no-interaction --prefer-dist --no-progress
+
+      - name: Commit dependency lock
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add composer.json composer.lock
+          git diff --cached --quiet || git commit -m "build: add AWS SDK for R2 storage"
+          git push origin HEAD:feature/catalog-backend
