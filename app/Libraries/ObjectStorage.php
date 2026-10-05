@@ -26,10 +26,13 @@ final class ObjectStorage
             throw new RuntimeException($file->getErrorString() ?: 'File upload tidak valid.');
         }
 
-        $extension = strtolower((string) $file->getExtension());
-        if ($extension === '') {
-            $extension = 'bin';
-        }
+        $mimeType = strtolower((string) $file->getMimeType());
+        $extension = match ($mimeType) {
+            'image/jpeg', 'image/jpg' => 'jpg',
+            'image/png' => 'png',
+            'image/webp' => 'webp',
+            default => throw new RuntimeException('Format gambar tidak didukung.'),
+        };
 
         $key = sprintf(
             'products/%s/%s.%s',
@@ -39,7 +42,7 @@ final class ObjectStorage
         );
 
         if ($this->config->driver === 'r2') {
-            return $this->storeToR2($file, $key);
+            return $this->storeToR2($file, $key, $mimeType);
         }
 
         if ($this->config->driver !== 'local') {
@@ -97,7 +100,7 @@ final class ObjectStorage
     /**
      * @return array{key: string, url: string}
      */
-    private function storeToR2(UploadedFile $file, string $key): array
+    private function storeToR2(UploadedFile $file, string $key, string $mimeType): array
     {
         if ($this->config->r2PublicBaseUrl === '') {
             throw new RuntimeException('storage.r2.publicBaseUrl wajib diisi untuk menampilkan gambar R2.');
@@ -107,7 +110,7 @@ final class ObjectStorage
             'Bucket' => $this->config->r2Bucket,
             'Key' => $key,
             'SourceFile' => $file->getTempName(),
-            'ContentType' => $file->getMimeType(),
+            'ContentType' => $mimeType,
             'CacheControl' => 'public, max-age=31536000, immutable',
         ]);
 
