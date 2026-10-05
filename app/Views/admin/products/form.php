@@ -87,35 +87,6 @@ $value = static function (string $key, mixed $default = '') {
         <p class="text-secondary small">Satu spesifikasi per baris dengan format <code>Label: Nilai</code>.</p>
         <textarea name="specifications_text" class="form-control font-monospace" rows="8" maxlength="10000" placeholder="Daya: 720 Watt&#10;Diameter Disc: 100 mm"><?= esc($value('specifications_text', $specificationsText)) ?></textarea>
       </div>
-
-      <?php if ($isEdit && $images !== []): ?>
-        <div class="admin-card p-4 mb-4">
-          <h2 class="h5 fw-bold mb-3">Gambar produk</h2>
-          <div class="row g-3">
-            <?php foreach ($images as $image): ?>
-              <div class="col-6 col-md-4">
-                <div class="border image-card h-100 p-2">
-                  <img src="<?= esc($image['url']) ?>" alt="<?= esc($image['alt_text'] ?? $product['name']) ?>">
-                  <div class="d-flex flex-wrap gap-1 mt-2">
-                    <?php if (! empty($image['is_primary'])): ?>
-                      <span class="badge text-bg-success">Utama</span>
-                    <?php else: ?>
-                      <form action="<?= site_url('admin/products/' . $product['id'] . '/images/' . $image['id'] . '/primary') ?>" method="post">
-                        <?= csrf_field() ?>
-                        <button class="btn btn-outline-dark btn-sm" type="submit">Jadikan utama</button>
-                      </form>
-                    <?php endif ?>
-                    <form action="<?= site_url('admin/products/' . $product['id'] . '/images/' . $image['id'] . '/delete') ?>" method="post" onsubmit="return confirm('Hapus gambar ini?')">
-                      <?= csrf_field() ?>
-                      <button class="btn btn-outline-danger btn-sm" type="submit">Hapus</button>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            <?php endforeach ?>
-          </div>
-        </div>
-      <?php endif ?>
     </div>
 
     <div class="col-xl-4">
@@ -162,5 +133,34 @@ $value = static function (string $key, mixed $default = '') {
     </div>
   </div>
 </form>
+
+<?php if ($isEdit && $images !== []): ?>
+  <section class="admin-card p-4 mt-4">
+    <h2 class="h5 fw-bold mb-3">Gambar produk</h2>
+    <div class="row g-3">
+      <?php foreach ($images as $image): ?>
+        <div class="col-6 col-md-4 col-xl-3">
+          <div class="border image-card h-100 p-2">
+            <img src="<?= esc($image['url']) ?>" alt="<?= esc($image['alt_text'] ?? $product['name']) ?>">
+            <div class="d-flex flex-wrap gap-1 mt-2">
+              <?php if (! empty($image['is_primary'])): ?>
+                <span class="badge text-bg-success align-self-center">Utama</span>
+              <?php else: ?>
+                <form action="<?= site_url('admin/products/' . $product['id'] . '/images/' . $image['id'] . '/primary') ?>" method="post">
+                  <?= csrf_field() ?>
+                  <button class="btn btn-outline-dark btn-sm" type="submit">Jadikan utama</button>
+                </form>
+              <?php endif ?>
+              <form action="<?= site_url('admin/products/' . $product['id'] . '/images/' . $image['id'] . '/delete') ?>" method="post" onsubmit="return confirm('Hapus gambar ini?')">
+                <?= csrf_field() ?>
+                <button class="btn btn-outline-danger btn-sm" type="submit">Hapus</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      <?php endforeach ?>
+    </div>
+  </section>
+<?php endif ?>
 
 <?= $this->endSection() ?>
