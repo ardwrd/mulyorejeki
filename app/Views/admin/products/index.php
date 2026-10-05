@@ -37,7 +37,7 @@
                 <?php if (! empty($product['image_url'])): ?>
                   <img src="<?= esc($product['image_url']) ?>" alt="" class="product-thumb">
                 <?php else: ?>
-                  <div class="product-thumb d-grid place-items-center text-secondary"><i class="bi bi-image"></i></div>
+                  <div class="product-thumb d-flex align-items-center justify-content-center text-secondary"><i class="bi bi-image"></i></div>
                 <?php endif ?>
               </td>
               <td>
