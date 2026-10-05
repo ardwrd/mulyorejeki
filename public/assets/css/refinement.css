@@ -1,0 +1,40 @@
+/* Mulyorejeki UI refinements */
+.eyebrow {
+  display: none !important;
+}
+
+.hero-title {
+  max-width: 760px;
+}
+
+.hero-trust strong {
+  font-size: 1rem;
+  font-weight: 750;
+}
+
+.hero-trust span {
+  font-size: .8rem;
+  line-height: 1.45;
+}
+
+.product-badge {
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.product-brand,
+.brand-grid div,
+.footer h6 {
+  letter-spacing: .035em;
+}
+
+.section-heading > h2,
+.section-heading > div > h2 {
+  margin-top: 0;
+}
+
+@media (max-width: 575.98px) {
+  .hero-title {
+    letter-spacing: -.035em;
+  }
+}
