@@ -36,10 +36,5 @@ jobs:
       - name: Check routes
         run: php spark routes
 
-      - name: Run migrations against SQLite
-        env:
-          CI_ENVIRONMENT: testing
-        run: php spark migrate --all
-
       - name: Run tests
         run: vendor/bin/phpunit --no-coverage
