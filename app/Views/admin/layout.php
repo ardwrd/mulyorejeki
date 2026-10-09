@@ -7,7 +7,7 @@
   <title><?= esc($title ?? 'Admin Mulyorejeki') ?></title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
-  <link href="<?= base_url('assets/css/admin.css') ?>" rel="stylesheet">
+  <link href="<?= base_url('assets/css/admin.css') ?>?v=2" rel="stylesheet">
 </head>
 <body>
 <?php $currentPage = trim(uri_string(), '/'); ?>
@@ -54,6 +54,13 @@
         </form>
       </div>
     </header>
+
+    <nav class="admin-mobile-nav d-lg-none" aria-label="Menu cepat admin">
+      <a href="<?= site_url('admin') ?>" class="<?= $currentPage === 'admin' ? 'active' : '' ?>" <?= $currentPage === 'admin' ? 'aria-current="page"' : '' ?>><i class="bi bi-grid-1x2"></i>Ringkasan</a>
+      <a href="<?= site_url('admin/products') ?>" class="<?= str_starts_with($currentPage, 'admin/products') ? 'active' : '' ?>" <?= str_starts_with($currentPage, 'admin/products') ? 'aria-current="page"' : '' ?>><i class="bi bi-box-seam"></i>Produk</a>
+      <a href="<?= site_url('admin/categories') ?>" class="<?= str_starts_with($currentPage, 'admin/categories') ? 'active' : '' ?>" <?= str_starts_with($currentPage, 'admin/categories') ? 'aria-current="page"' : '' ?>><i class="bi bi-grid"></i>Kategori</a>
+      <a href="<?= site_url('admin/brands') ?>" class="<?= str_starts_with($currentPage, 'admin/brands') ? 'active' : '' ?>" <?= str_starts_with($currentPage, 'admin/brands') ? 'aria-current="page"' : '' ?>><i class="bi bi-tags"></i>Merek</a>
+    </nav>
 
     <main class="admin-content" id="main-content">
       <?php if (session('success')): ?><div class="alert alert-success" role="status"><?= esc(session('success')) ?></div><?php endif ?>

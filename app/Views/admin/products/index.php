@@ -32,7 +32,7 @@ $pageUrl = static function (int $target) use ($filters): string {
   <div>
     <label for="category" class="form-label">Kategori</label>
     <select id="category" name="category" class="form-select">
-      <option value="">Semua kategori</option>
+      <option value="">Semua</option>
       <?php foreach ($categories as $category): ?>
         <option value="<?= esc((string) $category['id']) ?>" <?= $filters['category'] === (int) $category['id'] ? 'selected' : '' ?>><?= esc($category['name']) ?></option>
       <?php endforeach ?>
@@ -41,7 +41,7 @@ $pageUrl = static function (int $target) use ($filters): string {
   <div>
     <label for="status" class="form-label">Status</label>
     <select id="status" name="status" class="form-select">
-      <option value="">Semua status</option>
+      <option value="">Semua</option>
       <option value="active" <?= $filters['status'] === 'active' ? 'selected' : '' ?>>Aktif</option>
       <option value="inactive" <?= $filters['status'] === 'inactive' ? 'selected' : '' ?>>Nonaktif</option>
     </select>
@@ -74,7 +74,7 @@ $pageUrl = static function (int $target) use ($filters): string {
         </div>
         <div class="admin-product-info">
           <h3 class="admin-product-title"><?= esc($product['name']) ?></h3>
-          <div class="admin-product-sub"><?= esc($product['sku'] ?: $product['slug']) ?><?php if (! empty($product['is_featured'])): ?> <span class="text-warning-emphasis">· Unggulan</span><?php endif ?></div>
+          <?php if ($product['sku'] || ! empty($product['is_featured'])): ?><div class="admin-product-sub"><?php if ($product['sku']): ?>SKU <?= esc($product['sku']) ?><?php endif ?><?php if (! empty($product['is_featured'])): ?> <span class="text-warning-emphasis"><?= $product['sku'] ? '· ' : '' ?>Unggulan</span><?php endif ?></div><?php endif ?>
           <div class="admin-product-sub d-xl-none"><?= esc($product['category_name']) ?> · <?= esc($product['brand_name'] ?: 'Tanpa merek') ?></div>
         </div>
         <div class="admin-product-extra"><?= esc($product['category_name']) ?><br><span class="text-secondary"><?= esc($product['brand_name'] ?: 'Tanpa merek') ?></span></div>

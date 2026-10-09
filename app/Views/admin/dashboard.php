@@ -19,7 +19,7 @@
 
 <div class="row g-3">
   <div class="col-xl-8">
-    <section class="admin-card admin-list h-100" aria-labelledby="recent-products-title">
+    <section class="admin-card admin-list admin-recent-list h-100" aria-labelledby="recent-products-title">
       <div class="admin-section-heading">
         <h2 id="recent-products-title">Produk terbaru</h2>
         <a href="<?= site_url('admin/products') ?>" class="small text-decoration-none">Lihat semua</a>

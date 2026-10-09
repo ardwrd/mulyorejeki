@@ -42,6 +42,10 @@ button, input, select, textarea { font: inherit; }
 .admin-user span { color: var(--admin-muted); font-size: .72rem; }
 .admin-logout { display: inline-flex; align-items: center; gap: .4rem; min-height: 36px; }
 .admin-menu-button { display: grid; width: 40px; height: 40px; place-items: center; padding: 0; border: 1px solid var(--admin-line); font-size: 1.3rem; }
+.admin-mobile-nav { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: .25rem; padding: .35rem .5rem; background: #fff; border-bottom: 1px solid var(--admin-line); }
+.admin-mobile-nav a { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .05rem; min-width: 0; min-height: 48px; padding: .25rem .1rem; color: #4e5a67; border-radius: 8px; text-decoration: none; text-align: center; font-size: .69rem; font-weight: 700; line-height: 1.2; white-space: nowrap; }
+.admin-mobile-nav a.active { color: #9f4007; background: #fff0e6; }
+.admin-mobile-nav a i { font-size: 1.05rem; }
 .admin-content { width: min(100%, 1500px); margin: 0 auto; padding: clamp(1rem, 2.7vw, 2.4rem); }
 .admin-page-heading { display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem 1.5rem; margin-bottom: 1.45rem; }
 .admin-page-heading h1 { margin: .15rem 0 .3rem; font-size: clamp(1.65rem, 2.3vw, 2.25rem); font-weight: 800; letter-spacing: -.04em; }
@@ -103,6 +107,10 @@ textarea.form-control { min-height: auto; }
 .admin-image-card img { display: block; width: 100%; aspect-ratio: 1; object-fit: contain; background: #f6f7f8; border-radius: 7px; }
 .admin-image-actions { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .65rem; }
 .admin-image-actions form { margin: 0; }
+.admin-advanced-toggle { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: .75rem; padding: 0; color: var(--admin-ink); background: none; border: 0; text-align: left; font-weight: 750; }
+.admin-advanced-toggle small { color: var(--admin-muted); font-size: .75rem; font-weight: 500; }
+.admin-advanced-toggle > i { color: var(--admin-muted); transition: transform .2s ease; }
+.admin-advanced-toggle[aria-expanded="true"] > i { transform: rotate(180deg); }
 
 @media (max-width: 1199.98px) {
   .admin-product-row { grid-template-columns: 54px minmax(0,1fr) 96px auto; }
@@ -114,30 +122,48 @@ textarea.form-control { min-height: auto; }
   .admin-shell { display: block; }
   .admin-sidebar { --bs-offcanvas-width: min(85vw,310px); position: fixed; min-height: 0; height: 100dvh; }
   .admin-sidebar-body { position: static; height: 100%; padding-top: 1.2rem; }
+  .admin-topbar { position: sticky; top: 0; z-index: 1020; }
 }
 @media (max-width: 767.98px) {
   .admin-topbar { min-height: 62px; }
   .admin-user span { display: none; }
-  .admin-page-heading { align-items: stretch; flex-direction: column; }
+  .admin-page-heading { align-items: stretch; flex-direction: column; margin-bottom: 1rem; }
   .admin-page-heading > .btn { align-self: flex-start; }
-  .admin-product-row { grid-template-columns: 54px minmax(0,1fr) auto; gap: .6rem .8rem; padding: 1rem; }
+  .admin-stat { padding: 1rem; }
+  .admin-stat-value { margin-top: .5rem; font-size: 1.75rem; }
+  .admin-section-heading { padding: .9rem 1rem; }
+  .admin-product-row { grid-template-columns: 46px minmax(0,1fr) auto; gap: .35rem .65rem; padding: .8rem .9rem; }
+  .admin-product-thumb { width: 46px; height: 46px; }
   .admin-product-extra { display: none; }
   .admin-product-status { grid-column: 3; grid-row: 1; align-self: start; }
-  .admin-product-actions { grid-column: 1 / -1; justify-content: flex-start; padding-top: .65rem; border-top: 1px solid #f0f2f4; }
+  .admin-product-actions { grid-column: 2 / -1; grid-row: 2; justify-content: flex-start; padding-top: .2rem; border-top: 0; }
+  .admin-product-actions .btn { min-height: 34px; }
+  .admin-toolbar { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: .7rem; }
+  .admin-toolbar > div:first-child { grid-column: 1 / -1; }
+  .admin-toolbar > div { min-width: 0; }
+  .admin-toolbar > .btn { grid-column: 1 / -1; }
+  .admin-toolbar .btn { width: 100%; }
   .admin-term-row { grid-template-columns: 42px minmax(0,1fr); gap: .6rem .8rem; padding: 1rem; }
   .admin-term-icon { width: 42px; height: 42px; }
   .admin-term-actions { grid-column: 2; justify-content: flex-start; }
+  .admin-list:not(.admin-recent-list) .admin-term-row { grid-template-columns: 40px minmax(0,1fr) auto; gap: .5rem; padding: .75rem .9rem; }
+  .admin-list:not(.admin-recent-list) .admin-term-icon { width: 40px; height: 40px; }
+  .admin-list:not(.admin-recent-list) .admin-term-actions { grid-column: 3; grid-row: 1; flex-direction: column; align-self: center; gap: .3rem; }
+  .admin-list:not(.admin-recent-list) .admin-term-actions .btn { min-width: 62px; min-height: 34px; padding: .22rem .4rem; font-size: .75rem; }
+  .admin-recent-list .admin-term-row { grid-template-columns: 38px minmax(0,1fr) auto; gap: .5rem; padding: .8rem .9rem; }
+  .admin-recent-list .admin-term-icon { width: 38px; height: 38px; }
+  .admin-recent-list .admin-term-actions { grid-column: 3; grid-row: 1; }
+  .admin-recent-list .admin-term-actions .btn { padding: .28rem .5rem; font-size: .75rem; }
   .admin-form-side { grid-template-columns: minmax(0,1fr); }
+  .admin-product-form > .row { --bs-gutter-y: 1rem; }
+  .admin-product-form .admin-card.p-4 { padding: 1rem !important; }
+  .admin-advanced-toggle + .collapse { margin-top: 1rem; }
 }
 @media (max-width: 479.98px) {
   .admin-user { display: none; }
   .admin-topbar-title { font-size: .9rem; }
   .admin-logout span { display: none; }
   .admin-logout { width: 38px; justify-content: center; }
-  .admin-product-row { grid-template-columns: 48px minmax(0,1fr); }
-  .admin-product-thumb { width: 48px; height: 48px; }
-  .admin-product-status { grid-column: 2; grid-row: 2; }
-  .admin-product-actions { grid-row: 3; }
-  .admin-toolbar > * { flex: 1 1 100%; }
-  .admin-toolbar .btn { width: 100%; }
+  .admin-product-row { grid-template-columns: 42px minmax(0,1fr) auto; }
+  .admin-product-thumb { width: 42px; height: 42px; }
 }

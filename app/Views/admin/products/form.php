@@ -3,6 +3,7 @@
 
 <?php
 $isEdit = $product !== null;
+$formErrors = session('errors');
 $value = static function (string $key, mixed $default = '') {
     $oldValue = old($key);
     return $oldValue !== null ? $oldValue : $default;
@@ -18,10 +19,10 @@ $value = static function (string $key, mixed $default = '') {
   <a href="<?= site_url('admin/products') ?>" class="btn btn-outline-dark">Kembali</a>
 </div>
 
-<?php if ($errors = session('errors')): ?>
+<?php if ($formErrors): ?>
   <div class="alert alert-danger">
     <strong>Periksa kembali form:</strong>
-    <ul class="mb-0 mt-2 ps-3"><?php foreach ($errors as $error): ?><li><?= esc($error) ?></li><?php endforeach ?></ul>
+    <ul class="mb-0 mt-2 ps-3"><?php foreach ($formErrors as $error): ?><li><?= esc($error) ?></li><?php endforeach ?></ul>
   </div>
 <?php endif ?>
 
@@ -29,7 +30,7 @@ $value = static function (string $key, mixed $default = '') {
   <div class="alert alert-warning" role="alert">Belum ada kategori aktif. <a href="<?= site_url('admin/categories/new') ?>">Tambah kategori</a> sebelum menyimpan produk.</div>
 <?php endif ?>
 
-<form action="<?= $isEdit ? site_url('admin/products/' . $product['id']) : site_url('admin/products') ?>" method="post" enctype="multipart/form-data">
+<form class="admin-product-form" action="<?= $isEdit ? site_url('admin/products/' . $product['id']) : site_url('admin/products') ?>" method="post" enctype="multipart/form-data">
   <?= csrf_field() ?>
 
   <div class="row g-4">
@@ -82,16 +83,21 @@ $value = static function (string $key, mixed $default = '') {
         </div>
       </div>
 
-      <div class="admin-card p-4 mb-4">
-        <h2 class="h5 fw-bold mb-2">Spesifikasi</h2>
-        <p class="text-secondary small">Tulis satu rincian per baris dengan format <code>Nama: Nilai</code>.</p>
-        <textarea name="specifications_text" class="form-control font-monospace" rows="8" maxlength="10000" placeholder="Daya: 720 W&#10;Diameter cakram: 100 mm"><?= esc($value('specifications_text', $specificationsText)) ?></textarea>
+      <div class="admin-card admin-advanced-card p-4 mb-4">
+        <button class="admin-advanced-toggle d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#productSpecifications" aria-expanded="<?= $formErrors ? 'true' : 'false' ?>" aria-controls="productSpecifications"><span><i class="bi bi-list-check me-2"></i>Spesifikasi <small><?= trim($specificationsText) !== '' ? '· sudah diisi' : '· opsional' ?></small></span><i class="bi bi-chevron-down"></i></button>
+        <h2 class="h5 fw-bold mb-2 d-none d-md-block">Spesifikasi</h2>
+        <div class="collapse d-md-block <?= $formErrors ? 'show' : '' ?>" id="productSpecifications">
+          <p class="text-secondary small">Tulis satu rincian per baris dengan format <code>Nama: Nilai</code>.</p>
+          <textarea name="specifications_text" class="form-control font-monospace" rows="8" maxlength="10000" placeholder="Daya: 720 W&#10;Diameter cakram: 100 mm"><?= esc($value('specifications_text', $specificationsText)) ?></textarea>
+        </div>
       </div>
     </div>
 
     <div class="col-xl-4">
-      <div class="admin-card p-4 mb-4">
-        <h2 class="h5 fw-bold mb-3">Tampilan katalog</h2>
+      <div class="admin-card admin-advanced-card p-4 mb-4">
+        <button class="admin-advanced-toggle d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#productDisplayOptions" aria-expanded="<?= $formErrors ? 'true' : 'false' ?>" aria-controls="productDisplayOptions"><span><i class="bi bi-sliders me-2"></i>Opsi tampilan <small>· opsional</small></span><i class="bi bi-chevron-down"></i></button>
+        <h2 class="h5 fw-bold mb-3 d-none d-md-block">Tampilan katalog</h2>
+        <div class="collapse d-md-block <?= $formErrors ? 'show' : '' ?>" id="productDisplayOptions">
         <div class="mb-3">
           <label for="meta" class="form-label">Keterangan di kartu produk</label>
           <input id="meta" type="text" name="meta" class="form-control" value="<?= esc($value('meta', $product['meta'] ?? '')) ?>" maxlength="160" placeholder="720 W / Stainless Steel / M6–M20">
@@ -108,6 +114,7 @@ $value = static function (string $key, mixed $default = '') {
         <div class="mb-3">
           <label for="sort_order" class="form-label">Urutan</label>
           <input id="sort_order" type="number" name="sort_order" class="form-control" value="<?= esc((string) $value('sort_order', $product['sort_order'] ?? 0)) ?>">
+        </div>
         </div>
         <input type="hidden" name="is_featured" value="0">
         <div class="form-check form-switch mb-2">
