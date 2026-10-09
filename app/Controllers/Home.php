@@ -13,7 +13,7 @@ class Home extends BaseController
 
         return view('home/index', [
             'title' => 'Mulyorejeki — Katalog Pompa, Perkakas, dan Baut',
-            'description' => 'Lihat pompa, perkakas, baut, dan perlengkapan teknik di katalog Mulyorejeki.',
+            'description' => 'Lihat pompa, perkakas, baut, dan perlengkapan teknik di Mulyorejeki, Semarang Tengah.',
             'activePage' => 'home',
             'contactUrl' => StoreContact::whatsappUrl('Halo Mulyorejeki, saya ingin menanyakan produk di katalog.'),
             'categories' => $catalog->categories(),

@@ -1,3 +1,4 @@
+<?php use App\Libraries\StoreContact; ?>
 <!doctype html>
 <html lang="id">
 <head>
@@ -15,7 +16,7 @@
 <body>
   <div class="topbar py-2 d-none d-md-block">
     <div class="container d-flex justify-content-between align-items-center small">
-      <span>Mulyorejeki · Pompa, perkakas, dan baut</span>
+      <span>Mulyorejeki · Semarang Tengah</span>
       <?php if (! empty($contactUrl)): ?><a href="<?= esc($contactUrl) ?>" class="topbar-link" target="_blank" rel="noopener noreferrer"><i class="bi bi-whatsapp me-1"></i>Tanya harga dan stok</a><?php endif ?>
     </div>
   </div>
@@ -49,7 +50,7 @@
   <footer class="footer py-5">
     <div class="container">
       <div class="row g-4">
-        <div class="col-lg-5">
+        <div class="col-lg-4">
           <a class="brand-lockup footer-brand" href="<?= site_url('/') ?>">
             <span class="brand-mark">MR</span>
             <span><strong>MULYOREJEKI</strong><small>TOKO TEKNIK</small></span>
@@ -67,10 +68,14 @@
           <a href="<?= site_url('/#about') ?>">Tentang toko</a>
           <?php if (! empty($contactUrl)): ?><a href="<?= site_url('/#contact') ?>">Kontak</a><?php endif ?>
         </div>
-        <div class="col-lg-3">
-          <h6><?= ! empty($contactUrl) ? 'Hubungi toko' : 'Harga dan stok' ?></h6>
+        <div class="col-lg-4">
+          <h6>Alamat &amp; jam buka</h6>
+          <a href="<?= esc(StoreContact::mapsUrl()) ?>" target="_blank" rel="noopener noreferrer"><?= esc(StoreContact::ADDRESS) ?> <i class="bi bi-arrow-up-right"></i></a>
+          <p class="mb-1"><?= esc(StoreContact::WEEKDAY_HOURS) ?></p>
+          <p class="mb-1"><?= esc(StoreContact::SATURDAY_HOURS) ?></p>
+          <p class="mb-2"><?= esc(StoreContact::SUNDAY_HOURS) ?></p>
           <?php if (! empty($contactUrl)): ?>
-            <a href="<?= esc($contactUrl) ?>" target="_blank" rel="noopener noreferrer">Tanya lewat WhatsApp <i class="bi bi-arrow-up-right"></i></a>
+            <a href="<?= esc($contactUrl) ?>" target="_blank" rel="noopener noreferrer">WhatsApp <?= esc(StoreContact::phoneDisplay()) ?> <i class="bi bi-arrow-up-right"></i></a>
           <?php else: ?>
             <p class="mb-0">Harga dan ketersediaan barang perlu dikonfirmasi sebelum membeli.</p>
           <?php endif ?>

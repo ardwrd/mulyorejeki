@@ -149,10 +149,21 @@
         <div class="row align-items-center g-4">
           <div class="col-lg-8">
             <h2 class="mb-2">Mencari ukuran atau tipe lain?</h2>
-            <p class="text-secondary mb-0">Sebutkan nama barang dan ukurannya lewat WhatsApp. Kami bantu cek stoknya.</p>
+            <p class="text-secondary mb-0">Kirim nama dan ukuran barang lewat WhatsApp, atau datang langsung ke toko.</p>
           </div>
           <div class="col-lg-4 text-lg-end">
             <a href="<?= esc($contactUrl) ?>" class="btn btn-accent btn-lg px-4" target="_blank" rel="noopener noreferrer"><i class="bi bi-whatsapp me-2"></i>Chat WhatsApp</a>
+          </div>
+        </div>
+        <div class="row g-3 mt-3 pt-3 border-top">
+          <div class="col-md-7">
+            <strong class="d-block mb-1">Alamat toko</strong>
+            <p class="text-secondary mb-2"><?= esc(\App\Libraries\StoreContact::ADDRESS) ?></p>
+            <a href="<?= esc(\App\Libraries\StoreContact::mapsUrl()) ?>" target="_blank" rel="noopener noreferrer" class="text-link">Buka peta <i class="bi bi-arrow-up-right"></i></a>
+          </div>
+          <div class="col-md-5">
+            <strong class="d-block mb-1">Jam buka</strong>
+            <p class="text-secondary mb-0"><?= esc(\App\Libraries\StoreContact::WEEKDAY_HOURS) ?><br><?= esc(\App\Libraries\StoreContact::SATURDAY_HOURS) ?><br><?= esc(\App\Libraries\StoreContact::SUNDAY_HOURS) ?></p>
           </div>
         </div>
       </div>

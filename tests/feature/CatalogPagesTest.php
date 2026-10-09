@@ -20,6 +20,9 @@ final class CatalogPagesTest extends CIUnitTestCase
         $result->assertSee('Cari berdasarkan jenis barang');
         $result->assertDontSee('WhatsApp: akan diisi');
         $result->assertDontSee('href="#" class="btn btn-accent');
+        $result->assertSee('https://wa.me/628122802283');
+        $result->assertSee('Jl. K.H. Agus Salim, Purwodinatan');
+        $result->assertSee('Sabtu 08.00–14.00 WIB');
     }
 
     public function testCatalogPageLoads(): void
