@@ -18,19 +18,49 @@ class Products extends BaseController
     public function index(): string
     {
         $db = db_connect();
-        $products = $db->table('products p')
-            ->select('p.id, p.name, p.slug, p.sku, p.is_active, p.is_featured, p.updated_at, c.name AS category_name, b.name AS brand_name, pi.url AS image_url')
-            ->join('categories c', 'c.id = p.category_id')
-            ->join('brands b', 'b.id = p.brand_id', 'left')
-            ->join('product_images pi', 'pi.product_id = p.id AND pi.is_primary = 1', 'left')
-            ->orderBy('p.updated_at', 'DESC')
-            ->orderBy('p.id', 'DESC')
+        $search = trim((string) $this->request->getGet('q'));
+        $status = (string) $this->request->getGet('status');
+        $categoryId = (int) $this->request->getGet('category');
+        $status = in_array($status, ['active', 'inactive'], true) ? $status : '';
+        $countBuilder = $db->table('products');
+        $builder = $db->table('products')
+            ->select('products.id, products.name, products.slug, products.sku, products.is_active, products.is_featured, products.updated_at, categories.name AS category_name, brands.name AS brand_name, product_images.url AS image_url')
+            ->join('categories', 'categories.id = products.category_id')
+            ->join('brands', 'brands.id = products.brand_id', 'left')
+            ->join('product_images', 'product_images.product_id = products.id AND product_images.is_primary = 1', 'left');
+
+        if ($search !== '') {
+            $countBuilder->groupStart()->like('name', $search)->orLike('sku', $search)->orLike('slug', $search)->groupEnd();
+            $builder->groupStart()->like('products.name', $search)->orLike('products.sku', $search)->orLike('products.slug', $search)->groupEnd();
+        }
+        if ($status !== '') {
+            $countBuilder->where('is_active', $status === 'active' ? 1 : 0);
+            $builder->where('products.is_active', $status === 'active' ? 1 : 0);
+        }
+        if ($categoryId > 0) {
+            $countBuilder->where('category_id', $categoryId);
+            $builder->where('products.category_id', $categoryId);
+        }
+
+        $total = $countBuilder->countAllResults();
+        $perPage = 20;
+        $pageCount = max(1, (int) ceil($total / $perPage));
+        $page = min($pageCount, max(1, (int) $this->request->getGet('page')));
+        $products = $builder
+            ->orderBy('products.updated_at', 'DESC')
+            ->orderBy('products.id', 'DESC')
+            ->limit($perPage, ($page - 1) * $perPage)
             ->get()
             ->getResultArray();
 
         return view('admin/products/index', [
             'title' => 'Produk — Admin Mulyorejeki',
             'products' => $products,
+            'categories' => (new CategoryModel())->orderBy('name', 'ASC')->findAll(),
+            'filters' => ['q' => $search, 'status' => $status, 'category' => $categoryId],
+            'total' => $total,
+            'page' => $page,
+            'pageCount' => $pageCount,
         ]);
     }
 

@@ -9,10 +9,11 @@ $value = static function (string $key, mixed $default = '') {
 };
 ?>
 
-<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+<div class="admin-page-heading">
   <div>
-    <h1 class="h3 fw-bold mb-1"><?= $isEdit ? 'Edit Produk' : 'Tambah Produk' ?></h1>
-    <p class="text-secondary mb-0"><?= $isEdit ? 'Perbarui informasi dan gambar produk.' : 'Tambahkan item baru ke katalog.' ?></p>
+    <div class="admin-eyebrow"><a href="<?= site_url('admin/products') ?>">PRODUK</a> / <?= $isEdit ? 'EDIT' : 'BARU' ?></div>
+    <h1><?= $isEdit ? 'Edit Produk' : 'Tambah Produk' ?></h1>
+    <p><?= $isEdit ? 'Perbarui informasi, status, dan foto produk.' : 'Tambahkan item baru ke katalog toko.' ?></p>
   </div>
   <a href="<?= site_url('admin/products') ?>" class="btn btn-outline-dark">Kembali</a>
 </div>
@@ -22,6 +23,10 @@ $value = static function (string $key, mixed $default = '') {
     <strong>Periksa kembali form:</strong>
     <ul class="mb-0 mt-2 ps-3"><?php foreach ($errors as $error): ?><li><?= esc($error) ?></li><?php endforeach ?></ul>
   </div>
+<?php endif ?>
+
+<?php if ($categories === []): ?>
+  <div class="alert alert-warning" role="alert">Belum ada kategori aktif. <a href="<?= site_url('admin/categories/new') ?>">Tambah kategori</a> sebelum menyimpan produk.</div>
 <?php endif ?>
 
 <form action="<?= $isEdit ? site_url('admin/products/' . $product['id']) : site_url('admin/products') ?>" method="post" enctype="multipart/form-data">
@@ -58,6 +63,7 @@ $value = static function (string $key, mixed $default = '') {
                 <option value="<?= esc((string) $category['id']) ?>" <?= $selectedCategory === (string) $category['id'] ? 'selected' : '' ?>><?= esc($category['name']) ?></option>
               <?php endforeach ?>
             </select>
+            <div class="form-text"><a href="<?= site_url('admin/categories') ?>">Kelola kategori</a></div>
           </div>
           <div class="col-md-6">
             <label for="brand_id" class="form-label">Merek</label>
@@ -68,6 +74,7 @@ $value = static function (string $key, mixed $default = '') {
                 <option value="<?= esc((string) $brand['id']) ?>" <?= $selectedBrand === (string) $brand['id'] ? 'selected' : '' ?>><?= esc($brand['name']) ?></option>
               <?php endforeach ?>
             </select>
+            <div class="form-text"><a href="<?= site_url('admin/brands') ?>">Kelola merek</a></div>
           </div>
         </div>
 
@@ -122,12 +129,13 @@ $value = static function (string $key, mixed $default = '') {
 
       <div class="admin-card p-4 mb-4">
         <h2 class="h5 fw-bold mb-3">Upload gambar</h2>
-        <input type="file" name="image" class="form-control" accept="image/jpeg,image/png,image/webp">
+        <label for="image" class="form-label">Pilih gambar produk</label>
+        <input id="image" type="file" name="image" class="form-control" accept="image/jpeg,image/png,image/webp">
         <div class="form-text">JPG, PNG, atau WebP. Maksimal 5 MB. Gambar pertama otomatis menjadi gambar utama.</div>
       </div>
 
       <div class="d-grid gap-2">
-        <button type="submit" class="btn btn-accent btn-lg"><?= $isEdit ? 'Simpan Perubahan' : 'Tambah Produk' ?></button>
+        <button type="submit" class="btn btn-accent btn-lg" <?= $categories === [] ? 'disabled' : '' ?>><?= $isEdit ? 'Simpan Perubahan' : 'Tambah Produk' ?></button>
         <?php if ($isEdit): ?><a href="<?= site_url('products/' . $product['slug']) ?>" target="_blank" class="btn btn-outline-dark">Lihat di Website</a><?php endif ?>
       </div>
     </div>
@@ -140,9 +148,9 @@ $value = static function (string $key, mixed $default = '') {
     <div class="row g-3">
       <?php foreach ($images as $image): ?>
         <div class="col-6 col-md-4 col-xl-3">
-          <div class="border image-card h-100 p-2">
+          <div class="admin-image-card">
             <img src="<?= esc($image['url']) ?>" alt="<?= esc($image['alt_text'] ?? $product['name']) ?>">
-            <div class="d-flex flex-wrap gap-1 mt-2">
+            <div class="admin-image-actions">
               <?php if (! empty($image['is_primary'])): ?>
                 <span class="badge text-bg-success align-self-center">Utama</span>
               <?php else: ?>
