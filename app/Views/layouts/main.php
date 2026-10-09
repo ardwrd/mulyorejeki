@@ -15,8 +15,8 @@
 <body>
   <div class="topbar py-2 d-none d-md-block">
     <div class="container d-flex justify-content-between align-items-center small">
-      <span>Mulyorejeki · Toko teknik & kebutuhan workshop</span>
-      <a href="<?= site_url('/#contact') ?>" class="topbar-link"><i class="bi bi-whatsapp me-1"></i>Tanya stok & harga</a>
+      <span>Mulyorejeki · Pompa, perkakas, dan baut</span>
+      <?php if (! empty($contactUrl)): ?><a href="<?= esc($contactUrl) ?>" class="topbar-link" target="_blank" rel="noopener noreferrer"><i class="bi bi-whatsapp me-1"></i>Tanya harga dan stok</a><?php endif ?>
     </div>
   </div>
 
@@ -36,9 +36,9 @@
           <li class="nav-item"><a class="nav-link <?= ($activePage ?? '') === 'home' ? 'active' : '' ?>" href="<?= site_url('/') ?>">Beranda</a></li>
           <li class="nav-item"><a class="nav-link <?= ($activePage ?? '') === 'products' ? 'active' : '' ?>" href="<?= site_url('products') ?>">Produk</a></li>
           <li class="nav-item"><a class="nav-link" href="<?= site_url('/#categories') ?>">Kategori</a></li>
-          <li class="nav-item"><a class="nav-link" href="<?= site_url('/#brands') ?>">Brand</a></li>
-          <li class="nav-item"><a class="nav-link" href="<?= site_url('/#about') ?>">Tentang</a></li>
-          <li class="nav-item ms-lg-2"><a class="btn btn-dark btn-sm px-3" href="<?= site_url('/#contact') ?>"><i class="bi bi-chat-left-text me-2"></i>Hubungi Kami</a></li>
+          <li class="nav-item"><a class="nav-link" href="<?= site_url('/#brands') ?>">Merek</a></li>
+          <li class="nav-item"><a class="nav-link" href="<?= site_url('/#about') ?>">Tentang toko</a></li>
+          <?php if (! empty($contactUrl)): ?><li class="nav-item ms-lg-2"><a class="btn btn-dark btn-sm px-3" href="<?= esc($contactUrl) ?>" target="_blank" rel="noopener noreferrer"><i class="bi bi-whatsapp me-2"></i>Hubungi toko</a></li><?php endif ?>
         </ul>
       </div>
     </div>
@@ -54,24 +54,26 @@
             <span class="brand-mark">MR</span>
             <span><strong>MULYOREJEKI</strong><small>TOKO TEKNIK</small></span>
           </a>
-          <p class="footer-copy mt-3 mb-0">Pompa, perkakas, fastener, dan kebutuhan teknik untuk workshop maupun proyek.</p>
+          <p class="footer-copy mt-3 mb-0">Lihat pompa, perkakas, baut, dan barang teknik lain di katalog toko.</p>
         </div>
         <div class="col-6 col-lg-2">
           <h6>Menu</h6>
           <a href="<?= site_url('products') ?>">Produk</a>
           <a href="<?= site_url('/#categories') ?>">Kategori</a>
-          <a href="<?= site_url('/#brands') ?>">Brand</a>
+          <a href="<?= site_url('/#brands') ?>">Merek</a>
         </div>
         <div class="col-6 col-lg-2">
           <h6>Informasi</h6>
-          <a href="<?= site_url('/#about') ?>">Tentang</a>
-          <a href="<?= site_url('/#contact') ?>">Kontak</a>
+          <a href="<?= site_url('/#about') ?>">Tentang toko</a>
+          <?php if (! empty($contactUrl)): ?><a href="<?= site_url('/#contact') ?>">Kontak</a><?php endif ?>
         </div>
         <div class="col-lg-3">
-          <h6>Kontak</h6>
-          <p class="mb-1">WhatsApp: akan diisi</p>
-          <p class="mb-1">Alamat: akan diisi</p>
-          <p class="mb-0">Jam operasional: akan diisi</p>
+          <h6><?= ! empty($contactUrl) ? 'Hubungi toko' : 'Harga dan stok' ?></h6>
+          <?php if (! empty($contactUrl)): ?>
+            <a href="<?= esc($contactUrl) ?>" target="_blank" rel="noopener noreferrer">Tanya lewat WhatsApp <i class="bi bi-arrow-up-right"></i></a>
+          <?php else: ?>
+            <p class="mb-0">Harga dan ketersediaan barang perlu dikonfirmasi sebelum membeli.</p>
+          <?php endif ?>
         </div>
       </div>
       <hr>

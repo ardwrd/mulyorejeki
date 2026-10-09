@@ -5,7 +5,7 @@
   <div class="container">
     <div class="row align-items-end g-3">
       <div class="col-lg-7"><h1>Katalog produk</h1></div>
-      <div class="col-lg-5"><p class="text-secondary mb-0">Cari berdasarkan nama produk, merek, atau kategori. Harga dan stok dikonfirmasi langsung ke toko.</p></div>
+      <div class="col-lg-5"><p class="text-secondary mb-0">Cari nama barang atau merek, lalu saring menurut kategori. Harga dan stok perlu dikonfirmasi sebelum membeli.</p></div>
     </div>
   </div>
 </header>
@@ -16,7 +16,7 @@
       <div class="col-lg-5">
         <div class="search-box m-0">
           <i class="bi bi-search"></i>
-          <input id="catalogSearch" type="search" class="form-control" placeholder="Cari nama produk atau merek..." aria-label="Cari produk">
+          <input id="catalogSearch" type="search" class="form-control" placeholder="Nama barang atau merek" aria-label="Cari produk">
         </div>
       </div>
       <div class="col-lg-7">
@@ -63,8 +63,8 @@
 
     <div id="emptyState" class="empty-state d-none mt-4">
       <i class="bi bi-search fs-2 text-secondary"></i>
-      <h3 class="h5 mt-3">Produk tidak ditemukan</h3>
-      <p class="text-secondary mb-0">Coba kata kunci atau kategori lain.</p>
+      <h3 class="h5 mt-3">Tidak ada barang yang cocok</h3>
+      <p class="text-secondary mb-0">Coba nama barang yang lebih singkat atau pilih kategori lain.</p>
     </div>
   </div>
 </main>

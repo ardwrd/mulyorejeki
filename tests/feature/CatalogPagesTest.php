@@ -16,8 +16,10 @@ final class CatalogPagesTest extends CIUnitTestCase
         $result = $this->get('/');
 
         $result->assertStatus(200);
-        $result->assertSee('Pompa, gerinda, baut');
-        $result->assertSee('Pilih jenis barang yang dicari');
+        $result->assertSee('Cari pompa, perkakas, atau baut?');
+        $result->assertSee('Cari berdasarkan jenis barang');
+        $result->assertDontSee('WhatsApp: akan diisi');
+        $result->assertDontSee('href="#" class="btn btn-accent');
     }
 
     public function testCatalogPageLoads(): void

@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Libraries\CatalogRepository;
+use App\Libraries\StoreContact;
 use CodeIgniter\Exceptions\PageNotFoundException;
 
 class Catalog extends BaseController
@@ -13,8 +14,9 @@ class Catalog extends BaseController
 
         return view('catalog/index', [
             'title' => 'Katalog Produk — Mulyorejeki',
-            'description' => 'Katalog produk teknik Mulyorejeki.',
+            'description' => 'Cari pompa, perkakas, baut, dan perlengkapan teknik menurut nama atau kategori.',
             'activePage' => 'products',
+            'contactUrl' => StoreContact::whatsappUrl('Halo Mulyorejeki, saya ingin menanyakan produk di katalog.'),
             'categories' => $catalog->categories(),
             'products' => $catalog->products(),
         ]);
@@ -33,6 +35,7 @@ class Catalog extends BaseController
             'title' => $product['name'] . ' — Mulyorejeki',
             'description' => $product['description'],
             'activePage' => 'products',
+            'contactUrl' => StoreContact::whatsappUrl('Halo Mulyorejeki, saya ingin menanyakan ' . $product['name'] . '.'),
             'product' => $product,
             'relatedProducts' => $catalog->relatedProducts($product['category'], $product['slug'], 4),
         ]);

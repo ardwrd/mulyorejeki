@@ -4,8 +4,8 @@
 <div class="admin-page-heading">
   <div>
     <div class="admin-eyebrow">RINGKASAN TOKO</div>
-    <h1>Dashboard</h1>
-    <p>Pantau isi katalog dan lanjutkan pekerjaan terbaru.</p>
+    <h1>Ringkasan katalog</h1>
+    <p>Lihat jumlah barang yang tercatat dan yang sudah tayang.</p>
   </div>
   <a href="<?= site_url('admin/products/new') ?>" class="btn btn-accent"><i class="bi bi-plus-lg me-1"></i> Tambah Produk</a>
 </div>
@@ -42,7 +42,7 @@
   </div>
   <div class="col-xl-4">
     <section class="admin-card admin-form-card h-100" aria-labelledby="quick-actions-title">
-      <h2 id="quick-actions-title">Aksi cepat</h2>
+      <h2 id="quick-actions-title">Kelola katalog</h2>
       <p class="text-secondary small mb-3"><?= esc((string) $inactiveCount) ?> produk belum tayang di katalog.</p>
       <div class="d-grid gap-2">
         <a href="<?= site_url('admin/products/new') ?>" class="btn btn-accent text-start"><i class="bi bi-plus-lg me-2"></i> Tambah produk</a>

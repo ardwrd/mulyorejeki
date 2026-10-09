@@ -13,7 +13,7 @@ $value = static function (string $key, mixed $default = '') {
   <div>
     <div class="admin-eyebrow"><a href="<?= site_url('admin/products') ?>">PRODUK</a> / <?= $isEdit ? 'EDIT' : 'BARU' ?></div>
     <h1><?= $isEdit ? 'Edit Produk' : 'Tambah Produk' ?></h1>
-    <p><?= $isEdit ? 'Perbarui informasi, status, dan foto produk.' : 'Tambahkan item baru ke katalog toko.' ?></p>
+    <p><?= $isEdit ? 'Ubah keterangan, foto, dan status tampil barang ini.' : 'Isi keterangan barang yang akan ditampilkan di katalog.' ?></p>
   </div>
   <a href="<?= site_url('admin/products') ?>" class="btn btn-outline-dark">Kembali</a>
 </div>
@@ -68,7 +68,7 @@ $value = static function (string $key, mixed $default = '') {
           <div class="col-md-6">
             <label for="brand_id" class="form-label">Merek</label>
             <select id="brand_id" name="brand_id" class="form-select">
-              <option value="">Generic / tanpa merek</option>
+              <option value="">Tanpa merek</option>
               <?php foreach ($brands as $brand): ?>
                 <?php $selectedBrand = (string) $value('brand_id', $product['brand_id'] ?? ''); ?>
                 <option value="<?= esc((string) $brand['id']) ?>" <?= $selectedBrand === (string) $brand['id'] ? 'selected' : '' ?>><?= esc($brand['name']) ?></option>
@@ -91,8 +91,8 @@ $value = static function (string $key, mixed $default = '') {
 
       <div class="admin-card p-4 mb-4">
         <h2 class="h5 fw-bold mb-2">Spesifikasi</h2>
-        <p class="text-secondary small">Satu spesifikasi per baris dengan format <code>Label: Nilai</code>.</p>
-        <textarea name="specifications_text" class="form-control font-monospace" rows="8" maxlength="10000" placeholder="Daya: 720 Watt&#10;Diameter Disc: 100 mm"><?= esc($value('specifications_text', $specificationsText)) ?></textarea>
+        <p class="text-secondary small">Tulis satu rincian per baris dengan format <code>Nama: Nilai</code>.</p>
+        <textarea name="specifications_text" class="form-control font-monospace" rows="8" maxlength="10000" placeholder="Daya: 720 W&#10;Diameter cakram: 100 mm"><?= esc($value('specifications_text', $specificationsText)) ?></textarea>
       </div>
     </div>
 
@@ -100,15 +100,16 @@ $value = static function (string $key, mixed $default = '') {
       <div class="admin-card p-4 mb-4">
         <h2 class="h5 fw-bold mb-3">Tampilan katalog</h2>
         <div class="mb-3">
-          <label for="meta" class="form-label">Meta singkat</label>
+          <label for="meta" class="form-label">Keterangan di kartu produk</label>
           <input id="meta" type="text" name="meta" class="form-control" value="<?= esc($value('meta', $product['meta'] ?? '')) ?>" maxlength="160" placeholder="720 W / Stainless Steel / M6–M20">
         </div>
         <div class="mb-3">
-          <label for="icon" class="form-label">Bootstrap Icon</label>
+          <label for="icon" class="form-label">Ikon jika foto belum ada</label>
           <input id="icon" type="text" name="icon" class="form-control" value="<?= esc($value('icon', $product['icon'] ?? 'bi-tools')) ?>" maxlength="80" placeholder="bi-tools">
+          <div class="form-text">Gunakan nama ikon Bootstrap, misalnya bi-tools.</div>
         </div>
         <div class="mb-3">
-          <label for="badge" class="form-label">Badge</label>
+          <label for="badge" class="form-label">Label pada foto</label>
           <input id="badge" type="text" name="badge" class="form-control" value="<?= esc($value('badge', $product['badge'] ?? '')) ?>" maxlength="80" placeholder="Pilihan">
         </div>
         <div class="mb-3">
@@ -118,7 +119,7 @@ $value = static function (string $key, mixed $default = '') {
         <input type="hidden" name="is_featured" value="0">
         <div class="form-check form-switch mb-2">
           <input class="form-check-input" type="checkbox" role="switch" id="is_featured" name="is_featured" value="1" <?= (string) $value('is_featured', $product['is_featured'] ?? 0) === '1' ? 'checked' : '' ?>>
-          <label class="form-check-label" for="is_featured">Featured</label>
+          <label class="form-check-label" for="is_featured">Tampilkan di beranda</label>
         </div>
         <input type="hidden" name="is_active" value="0">
         <div class="form-check form-switch">
@@ -128,10 +129,10 @@ $value = static function (string $key, mixed $default = '') {
       </div>
 
       <div class="admin-card p-4 mb-4">
-        <h2 class="h5 fw-bold mb-3">Upload gambar</h2>
-        <label for="image" class="form-label">Pilih gambar produk</label>
+        <h2 class="h5 fw-bold mb-3">Foto produk</h2>
+        <label for="image" class="form-label">Tambah foto</label>
         <input id="image" type="file" name="image" class="form-control" accept="image/jpeg,image/png,image/webp">
-        <div class="form-text">JPG, PNG, atau WebP. Maksimal 5 MB. Gambar pertama otomatis menjadi gambar utama.</div>
+        <div class="form-text">JPG, PNG, atau WebP; maksimal 5 MB. Foto pertama menjadi foto utama.</div>
       </div>
 
       <div class="d-grid gap-2">

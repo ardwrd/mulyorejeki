@@ -19,7 +19,7 @@ $pageUrl = static function (int $target) use ($filters): string {
   <div>
     <div class="admin-eyebrow">KATALOG</div>
     <h1>Produk</h1>
-    <p>Kelola produk, status tayang, dan foto yang muncul di website.</p>
+    <p>Ubah informasi barang, foto, dan status tampilnya di katalog.</p>
   </div>
   <a href="<?= site_url('admin/products/new') ?>" class="btn btn-accent"><i class="bi bi-plus-lg me-1"></i> Tambah Produk</a>
 </div>
@@ -54,7 +54,7 @@ $pageUrl = static function (int $target) use ($filters): string {
   <div class="admin-empty admin-card">
     <span class="admin-empty-icon"><i class="bi <?= $hasFilters ? 'bi-search' : 'bi-box-seam' ?>"></i></span>
     <h2><?= $hasFilters ? 'Produk tidak ditemukan' : 'Belum ada produk' ?></h2>
-    <p><?= $hasFilters ? 'Coba ubah kata kunci atau filter pencarian.' : 'Tambahkan produk pertama untuk mengisi katalog toko.' ?></p>
+    <p><?= $hasFilters ? 'Coba nama yang lebih singkat atau ganti filter.' : 'Tambah barang pertama agar katalog mulai terisi.' ?></p>
     <a href="<?= $hasFilters ? site_url('admin/products') : site_url('admin/products/new') ?>" class="btn btn-accent"><?= $hasFilters ? 'Lihat Semua Produk' : 'Tambah Produk' ?></a>
   </div>
 <?php else: ?>

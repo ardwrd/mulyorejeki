@@ -7,12 +7,12 @@ final class CatalogData
     public static function categories(): array
     {
         return [
-            ['slug' => 'pompa', 'name' => 'Pompa', 'description' => 'Pompa air dan kebutuhan transfer fluida', 'icon' => 'bi-droplet-half'],
-            ['slug' => 'power-tools', 'name' => 'Power Tools', 'description' => 'Gerinda, bor, cut-off, dan mesin kerja', 'icon' => 'bi-lightning-charge'],
-            ['slug' => 'fastener', 'name' => 'Baut & Fastener', 'description' => 'Baut, mur, washer, dan kebutuhan pengikat', 'icon' => 'bi-nut'],
-            ['slug' => 'hand-tools', 'name' => 'Hand Tools', 'description' => 'Kunci, tang, obeng, dan alat kerja manual', 'icon' => 'bi-wrench-adjustable'],
-            ['slug' => 'plumbing', 'name' => 'Plumbing', 'description' => 'Fitting, valve, selang, dan aksesorinya', 'icon' => 'bi-pipe'],
-            ['slug' => 'electrical', 'name' => 'Electrical', 'description' => 'Perlengkapan listrik untuk pekerjaan teknik', 'icon' => 'bi-plug'],
+            ['slug' => 'pompa', 'name' => 'Pompa', 'description' => 'Pompa air, booster, dan pompa transfer', 'icon' => 'bi-droplet-half'],
+            ['slug' => 'power-tools', 'name' => 'Power Tools', 'description' => 'Gerinda, bor, dan mesin potong', 'icon' => 'bi-lightning-charge'],
+            ['slug' => 'fastener', 'name' => 'Baut & Fastener', 'description' => 'Baut, mur, dan ring', 'icon' => 'bi-nut'],
+            ['slug' => 'hand-tools', 'name' => 'Hand Tools', 'description' => 'Kunci, tang, dan obeng', 'icon' => 'bi-wrench-adjustable'],
+            ['slug' => 'plumbing', 'name' => 'Plumbing', 'description' => 'Fitting, katup, dan selang', 'icon' => 'bi-pipe'],
+            ['slug' => 'electrical', 'name' => 'Electrical', 'description' => 'Komponen dan perlengkapan listrik', 'icon' => 'bi-plug'],
         ];
     }
 
@@ -33,7 +33,7 @@ final class CatalogData
                 'meta' => '720 W',
                 'icon' => 'bi-lightning-charge',
                 'badge' => 'Pilihan',
-                'description' => 'Gerinda tangan 100 mm untuk pekerjaan potong dan grinding di workshop maupun lapangan.',
+                'description' => 'Gerinda tangan Makita dengan cakram 100 mm dan daya 720 W.',
                 'specs' => [
                     'Brand' => 'Makita',
                     'Tipe' => 'Angle Grinder',
@@ -51,7 +51,7 @@ final class CatalogData
                 'category_label' => 'Pompa',
                 'meta' => 'Stainless Steel',
                 'icon' => 'bi-droplet-half',
-                'description' => 'Pompa centrifugal untuk kebutuhan transfer air dan penggunaan umum.',
+                'description' => 'Pompa sentrifugal Ebara berbahan stainless steel untuk memindahkan air.',
                 'specs' => ['Brand' => 'Ebara', 'Tipe' => 'Centrifugal Pump', 'Material' => 'Stainless Steel', 'Kategori' => 'Pompa'],
             ],
             [
@@ -62,7 +62,7 @@ final class CatalogData
                 'category_label' => 'Hand Tools',
                 'meta' => 'Metric',
                 'icon' => 'bi-wrench-adjustable',
-                'description' => 'Set kunci kombinasi metric untuk kebutuhan perawatan dan pekerjaan mekanik.',
+                'description' => 'Set kunci kombinasi Tekiro dengan ukuran metrik.',
                 'specs' => ['Brand' => 'Tekiro', 'Tipe' => 'Combination Wrench Set', 'Satuan' => 'Metric', 'Kategori' => 'Hand Tools'],
             ],
             [
@@ -73,7 +73,7 @@ final class CatalogData
                 'category_label' => 'Fastener',
                 'meta' => 'M6–M20',
                 'icon' => 'bi-nut',
-                'description' => 'Baut hex grade 8.8 dalam beberapa pilihan ukuran untuk pekerjaan konstruksi dan mekanik.',
+                'description' => 'Baut kepala segi enam grade 8.8, ukuran M6–M20.',
                 'specs' => ['Tipe' => 'Hex Bolt', 'Grade' => '8.8', 'Ukuran' => 'M6–M20', 'Kategori' => 'Fastener'],
             ],
             [
@@ -84,7 +84,7 @@ final class CatalogData
                 'category_label' => 'Power Tools',
                 'meta' => '550 W',
                 'icon' => 'bi-tools',
-                'description' => 'Bor impact 13 mm untuk pekerjaan pengeboran umum di workshop dan proyek.',
+                'description' => 'Bor impact Bosch dengan chuck 13 mm dan daya 550 W.',
                 'specs' => ['Brand' => 'Bosch', 'Tipe' => 'Impact Drill', 'Chuck' => '13 mm', 'Daya' => '550 Watt', 'Kategori' => 'Power Tools'],
             ],
             [
@@ -95,7 +95,7 @@ final class CatalogData
                 'category_label' => 'Pompa',
                 'meta' => 'Automatic',
                 'icon' => 'bi-water',
-                'description' => 'Pompa booster otomatis untuk membantu menjaga tekanan air.',
+                'description' => 'Pompa booster Grundfos dengan kontrol otomatis untuk membantu menjaga tekanan air.',
                 'specs' => ['Brand' => 'Grundfos', 'Tipe' => 'Booster Pump', 'Kontrol' => 'Automatic', 'Kategori' => 'Pompa'],
             ],
             [
@@ -106,7 +106,7 @@ final class CatalogData
                 'category_label' => 'Hand Tools',
                 'meta' => '8 inch',
                 'icon' => 'bi-tools',
-                'description' => 'Tang kombinasi ukuran 8 inch untuk pekerjaan mekanik dan kelistrikan umum.',
+                'description' => 'Tang kombinasi Tekiro ukuran 8 inci.',
                 'specs' => ['Brand' => 'Tekiro', 'Tipe' => 'Combination Pliers', 'Ukuran' => '8 inch', 'Kategori' => 'Hand Tools'],
             ],
             [
@@ -117,7 +117,7 @@ final class CatalogData
                 'category_label' => 'Fastener',
                 'meta' => 'M8–M12',
                 'icon' => 'bi-circle',
-                'description' => 'Washer stainless dalam beberapa ukuran untuk kebutuhan sambungan dan pengikat.',
+                'description' => 'Ring datar berbahan stainless steel, ukuran M8–M12.',
                 'specs' => ['Tipe' => 'Flat Washer', 'Material' => 'Stainless Steel', 'Ukuran' => 'M8–M12', 'Kategori' => 'Fastener'],
             ],
         ];

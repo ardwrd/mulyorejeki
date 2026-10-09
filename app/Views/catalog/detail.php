@@ -37,15 +37,15 @@
           <div class="d-flex gap-3 align-items-start">
             <i class="bi bi-info-circle text-secondary mt-1"></i>
             <div>
-              <strong class="d-block mb-1">Tanya harga dan stok sebelum datang</strong>
-              <span class="small text-secondary">Sebutkan nama produk atau tipe saat menghubungi toko agar pengecekan lebih cepat.</span>
+              <strong class="d-block mb-1">Harga dan stok belum tercantum</strong>
+              <span class="small text-secondary"><?= ! empty($contactUrl) ? 'Sebutkan nama barang ini saat menghubungi toko agar lebih mudah dicek.' : 'Catat nama dan tipe barang ini untuk memastikan ketersediaannya sebelum membeli.' ?></span>
             </div>
           </div>
         </div>
 
         <div class="d-grid d-sm-flex gap-2 mb-5">
-          <a href="#" class="btn btn-accent btn-lg px-4"><i class="bi bi-whatsapp me-2"></i>Tanya Harga</a>
-          <a href="<?= site_url('products') ?>" class="btn btn-outline-dark btn-lg px-4">Kembali ke Katalog</a>
+          <?php if (! empty($contactUrl)): ?><a href="<?= esc($contactUrl) ?>" class="btn btn-accent btn-lg px-4" target="_blank" rel="noopener noreferrer"><i class="bi bi-whatsapp me-2"></i>Tanya lewat WhatsApp</a><?php endif ?>
+          <a href="<?= site_url('products') ?>" class="btn btn-outline-dark btn-lg px-4">Kembali ke katalog</a>
         </div>
 
         <?php if ($product['specs'] !== []): ?>
@@ -64,7 +64,7 @@
 <?php if ($relatedProducts !== []): ?>
 <section class="section-space section-muted">
   <div class="container">
-    <div class="section-heading mb-4"><h2 class="mb-0">Produk lain di kategori <?= esc($product['category_label']) ?></h2></div>
+    <div class="section-heading mb-4"><h2 class="mb-0">Barang lain dalam kategori <?= esc($product['category_label']) ?></h2></div>
     <div class="row g-4">
       <?php foreach ($relatedProducts as $related): ?>
         <div class="col-6 col-lg-3">

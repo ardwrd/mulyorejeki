@@ -5,7 +5,7 @@
   <div>
     <div class="admin-eyebrow">AKUN ADMIN</div>
     <h1>Profil &amp; Keamanan</h1>
-    <p>Perbarui identitas akun dan ganti password secara berkala.</p>
+    <p>Ubah nama, email login, atau password akun ini.</p>
   </div>
 </div>
 

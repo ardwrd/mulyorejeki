@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Libraries\CatalogRepository;
+use App\Libraries\StoreContact;
 
 class Home extends BaseController
 {
@@ -11,9 +12,10 @@ class Home extends BaseController
         $catalog = new CatalogRepository();
 
         return view('home/index', [
-            'title' => 'Mulyorejeki — Toko Teknik & Peralatan Industri',
-            'description' => 'Katalog pompa, gerinda, baut, perkakas, dan kebutuhan teknik untuk workshop maupun proyek.',
+            'title' => 'Mulyorejeki — Katalog Pompa, Perkakas, dan Baut',
+            'description' => 'Lihat pompa, perkakas, baut, dan perlengkapan teknik di katalog Mulyorejeki.',
             'activePage' => 'home',
+            'contactUrl' => StoreContact::whatsappUrl('Halo Mulyorejeki, saya ingin menanyakan produk di katalog.'),
             'categories' => $catalog->categories(),
             'brands' => $catalog->brands(),
             'featuredProducts' => $catalog->featuredProducts(4),

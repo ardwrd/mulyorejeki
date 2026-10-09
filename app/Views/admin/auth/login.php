@@ -22,11 +22,11 @@
   <main class="login-card">
     <div class="brand">
       <span class="brand-mark">MR</span>
-      <span><strong>MULYOREJEKI</strong><small>ADMIN PANEL</small></span>
+      <span><strong>MULYOREJEKI</strong><small>KELOLA KATALOG</small></span>
     </div>
 
     <h1 class="h3 fw-bold mb-2">Masuk ke admin</h1>
-    <p class="text-secondary mb-4">Kelola katalog produk dan gambar dari satu panel.</p>
+    <p class="text-secondary mb-4">Masuk untuk mengubah produk, kategori, merek, dan foto.</p>
 
     <?php if (session('error')): ?><div class="alert alert-danger"><?= esc(session('error')) ?></div><?php endif ?>
     <?php if ($errors = session('errors')): ?>

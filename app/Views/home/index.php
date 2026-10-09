@@ -6,17 +6,17 @@
     <div class="container py-5 py-lg-6">
       <div class="row align-items-center g-4 g-lg-5">
         <div class="col-lg-7">
-          <h1 class="display-4 hero-title mb-4">Pompa, gerinda, baut, dan perlengkapan teknik untuk kebutuhan kerja sehari-hari.</h1>
-          <p class="lead hero-copy mb-4">Cari produk berdasarkan jenis dan merek, cek spesifikasi dasar, lalu hubungi kami untuk harga dan ketersediaan.</p>
+          <h1 class="display-4 hero-title mb-4">Cari pompa, perkakas, atau baut? Mulai dari sini.</h1>
+          <p class="lead hero-copy mb-4">Telusuri barang menurut jenis atau merek. Ukuran dan spesifikasi yang tercatat bisa dilihat di halaman produk.</p>
           <div class="d-flex flex-column flex-sm-row gap-3">
-            <a class="btn btn-accent btn-lg px-4" href="<?= site_url('products') ?>">Lihat Katalog <i class="bi bi-arrow-right ms-2"></i></a>
-            <a class="btn btn-outline-dark btn-lg px-4" href="#contact"><i class="bi bi-whatsapp me-2"></i>Tanya Stok</a>
+            <a class="btn btn-accent btn-lg px-4" href="<?= site_url('products') ?>">Lihat katalog <i class="bi bi-arrow-right ms-2"></i></a>
+            <?php if (! empty($contactUrl)): ?><a class="btn btn-outline-dark btn-lg px-4" href="<?= esc($contactUrl) ?>" target="_blank" rel="noopener noreferrer"><i class="bi bi-whatsapp me-2"></i>Tanya stok</a><?php endif ?>
           </div>
 
           <div class="hero-trust row g-3 mt-4 pt-3">
-            <div class="col-4"><strong>Pompa</strong><span>Air & transfer</span></div>
-            <div class="col-4"><strong>Tools</strong><span>Mesin & perkakas</span></div>
-            <div class="col-4"><strong>Fastener</strong><span>Baut, mur & washer</span></div>
+            <div class="col-4"><strong>Pompa</strong><span>Air &amp; booster</span></div>
+            <div class="col-4"><strong>Perkakas</strong><span>Bor, gerinda, tang</span></div>
+            <div class="col-4"><strong>Baut</strong><span>Mur &amp; ring</span></div>
           </div>
         </div>
 
@@ -28,7 +28,7 @@
             </div>
             <form class="search-box mt-4" action="<?= site_url('products') ?>" method="get">
               <i class="bi bi-search"></i>
-              <input type="search" name="q" class="form-control" placeholder="Contoh: pompa, gerinda, baut..." aria-label="Cari produk">
+              <input type="search" name="q" class="form-control" placeholder="Misalnya: pompa atau gerinda" aria-label="Cari produk">
               <button class="btn btn-dark" type="submit">Cari</button>
             </form>
 
@@ -50,7 +50,7 @@
   <section id="categories" class="section-space bg-white">
     <div class="container">
       <div class="section-heading d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-4">
-        <h2 class="mb-0">Pilih jenis barang yang dicari</h2>
+        <h2 class="mb-0">Cari berdasarkan jenis barang</h2>
         <a href="<?= site_url('products') ?>" class="text-link">Lihat semua produk <i class="bi bi-arrow-right ms-1"></i></a>
       </div>
 
@@ -74,7 +74,7 @@
   <section class="section-space section-muted">
     <div class="container">
       <div class="section-heading d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-4">
-        <h2 class="mb-0">Beberapa produk di katalog</h2>
+        <h2 class="mb-0">Lihat beberapa produk</h2>
         <a href="<?= site_url('products') ?>" class="text-link">Buka katalog <i class="bi bi-arrow-right ms-1"></i></a>
       </div>
 
@@ -107,8 +107,8 @@
     <div class="container">
       <div class="row align-items-center g-4">
         <div class="col-lg-4">
-          <h2>Merek yang tersedia</h2>
-          <p class="text-secondary mb-0">Pilihan merek mengikuti jenis barang dan stok yang tersedia di toko.</p>
+          <h2>Merek di katalog</h2>
+          <p class="text-secondary mb-0">Merek yang tercantum pada produk Mulyorejeki. Ketersediaan tiap barang bisa berubah.</p>
         </div>
         <div class="col-lg-8">
           <div class="brand-grid">
@@ -129,34 +129,36 @@
           </div>
         </div>
         <div class="col-lg-6">
-          <h2 class="text-white">Cari barang tanpa harus datang dulu.</h2>
-          <p class="about-copy">Gunakan katalog untuk melihat jenis produk dan spesifikasi dasar. Untuk harga, stok, ukuran, atau tipe tertentu, hubungi toko langsung melalui WhatsApp.</p>
+          <h2 class="text-white">Lihat detail barang sebelum memilih.</h2>
+          <p class="about-copy">Di sini Anda bisa melihat nama, merek, ukuran, dan spesifikasi yang sudah dicatat. Harga serta stok perlu dipastikan langsung sebelum membeli.</p>
           <div class="row g-3 mt-3">
-            <div class="col-sm-6"><div class="feature-line"><i class="bi bi-check2-circle"></i><span>Informasi produk</span></div></div>
-            <div class="col-sm-6"><div class="feature-line"><i class="bi bi-check2-circle"></i><span>Spesifikasi dasar</span></div></div>
-            <div class="col-sm-6"><div class="feature-line"><i class="bi bi-check2-circle"></i><span>Cek stok via WhatsApp</span></div></div>
-            <div class="col-sm-6"><div class="feature-line"><i class="bi bi-check2-circle"></i><span>Pencarian berdasarkan kategori</span></div></div>
+            <div class="col-sm-6"><div class="feature-line"><i class="bi bi-check2-circle"></i><span>Nama dan tipe barang</span></div></div>
+            <div class="col-sm-6"><div class="feature-line"><i class="bi bi-check2-circle"></i><span>Ukuran dan spesifikasi</span></div></div>
+            <div class="col-sm-6"><div class="feature-line"><i class="bi bi-check2-circle"></i><span>Merek produk</span></div></div>
+            <div class="col-sm-6"><div class="feature-line"><i class="bi bi-check2-circle"></i><span>Kategori barang</span></div></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
+  <?php if (! empty($contactUrl)): ?>
   <section id="contact" class="section-space bg-white">
     <div class="container">
       <div class="contact-box">
         <div class="row align-items-center g-4">
           <div class="col-lg-8">
-            <h2 class="mb-2">Tidak menemukan barang yang dicari?</h2>
-            <p class="text-secondary mb-0">Kirim nama barang, ukuran, atau tipe yang dibutuhkan. Kami akan bantu cek ketersediaannya.</p>
+            <h2 class="mb-2">Mencari ukuran atau tipe lain?</h2>
+            <p class="text-secondary mb-0">Sebutkan nama barang dan ukurannya lewat WhatsApp. Kami bantu cek stoknya.</p>
           </div>
           <div class="col-lg-4 text-lg-end">
-            <a href="#" class="btn btn-accent btn-lg px-4"><i class="bi bi-whatsapp me-2"></i>Chat WhatsApp</a>
+            <a href="<?= esc($contactUrl) ?>" class="btn btn-accent btn-lg px-4" target="_blank" rel="noopener noreferrer"><i class="bi bi-whatsapp me-2"></i>Chat WhatsApp</a>
           </div>
         </div>
       </div>
     </div>
   </section>
+  <?php endif ?>
 </main>
 
 <?= $this->endSection() ?>

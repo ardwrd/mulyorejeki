@@ -39,6 +39,8 @@ admin.seed.password = 'PASSWORD_YANG_KUAT'
 
 Seeder admin hanya membuat atau memperbarui akun jika ketiga nilai tersebut terisi. Password tidak disimpan di repository; database hanya menyimpan hasil `password_hash()`.
 
+Nomor kontak toko dapat diisi di `.env` dengan `store.whatsappNumber = '6281234567890'`. Tombol WhatsApp hanya muncul jika nomor valid; tanpa nomor, katalog tetap menampilkan keterangan harga dan stok tanpa tautan kontak kosong.
+
 ## Database
 
 Database aplikasi tetap dapat berada di hosting/server MySQL atau MariaDB. Struktur database dibawa bersama source code menggunakan CodeIgniter migrations, sehingga saat pindah server cukup mengatur koneksi database lalu menjalankan:

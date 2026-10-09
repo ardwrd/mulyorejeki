@@ -17,14 +17,14 @@
       <div class="admin-sidebar-top">
         <a class="admin-brand" href="<?= site_url('admin') ?>" id="adminSidebarTitle">
           <span class="admin-brand-mark">MR</span>
-          <span><strong>MULYOREJEKI</strong><small>ADMIN PANEL</small></span>
+          <span><strong>MULYOREJEKI</strong><small>KELOLA KATALOG</small></span>
         </a>
         <button type="button" class="btn-close btn-close-white d-lg-none" data-bs-dismiss="offcanvas" data-bs-target="#adminSidebar" aria-label="Tutup navigasi"></button>
       </div>
 
       <div class="admin-nav-label">MENU UTAMA</div>
       <nav class="admin-nav" aria-label="Navigasi admin">
-        <a href="<?= site_url('admin') ?>" class="<?= $currentPage === 'admin' ? 'active' : '' ?>" <?= $currentPage === 'admin' ? 'aria-current="page"' : '' ?>><i class="bi bi-grid-1x2"></i><span>Dashboard</span></a>
+        <a href="<?= site_url('admin') ?>" class="<?= $currentPage === 'admin' ? 'active' : '' ?>" <?= $currentPage === 'admin' ? 'aria-current="page"' : '' ?>><i class="bi bi-grid-1x2"></i><span>Ringkasan</span></a>
         <a href="<?= site_url('admin/products') ?>" class="<?= str_starts_with($currentPage, 'admin/products') ? 'active' : '' ?>" <?= str_starts_with($currentPage, 'admin/products') ? 'aria-current="page"' : '' ?>><i class="bi bi-box-seam"></i><span>Produk</span></a>
         <a href="<?= site_url('admin/categories') ?>" class="<?= str_starts_with($currentPage, 'admin/categories') ? 'active' : '' ?>" <?= str_starts_with($currentPage, 'admin/categories') ? 'aria-current="page"' : '' ?>><i class="bi bi-grid"></i><span>Kategori</span></a>
         <a href="<?= site_url('admin/brands') ?>" class="<?= str_starts_with($currentPage, 'admin/brands') ? 'active' : '' ?>" <?= str_starts_with($currentPage, 'admin/brands') ? 'aria-current="page"' : '' ?>><i class="bi bi-tags"></i><span>Merek</span></a>
@@ -32,7 +32,7 @@
 
       <div class="admin-sidebar-bottom">
         <a href="<?= site_url('admin/profile') ?>" class="<?= $currentPage === 'admin/profile' ? 'active' : '' ?>" <?= $currentPage === 'admin/profile' ? 'aria-current="page"' : '' ?>><i class="bi bi-person-gear"></i><span>Profil &amp; Keamanan</span></a>
-        <a href="<?= site_url('/') ?>" target="_blank" rel="noopener noreferrer"><i class="bi bi-box-arrow-up-right"></i><span>Lihat Website</span></a>
+        <a href="<?= site_url('/') ?>" target="_blank" rel="noopener noreferrer"><i class="bi bi-box-arrow-up-right"></i><span>Lihat situs</span></a>
       </div>
     </div>
   </aside>
@@ -41,7 +41,7 @@
     <header class="admin-topbar">
       <div class="admin-topbar-start">
         <button type="button" class="btn admin-menu-button d-lg-none" data-bs-toggle="offcanvas" data-bs-target="#adminSidebar" aria-controls="adminSidebar" aria-label="Buka navigasi"><i class="bi bi-list"></i></button>
-        <span class="admin-topbar-title">Panel Admin</span>
+        <span class="admin-topbar-title">Kelola katalog</span>
       </div>
       <div class="admin-topbar-end">
         <div class="admin-user">
