@@ -85,7 +85,7 @@ class Products extends BaseController
 
         $model = new ProductModel();
         $data = $this->productPayload();
-        $data['slug'] = $this->makeUniqueSlug($data['slug'] !== '' ? $data['slug'] : $data['name']);
+        $data['slug'] = $this->makeUniqueSlug($data['name']);
 
         $productId = $model->insert($data, true);
         if ($productId === false) {
@@ -136,7 +136,6 @@ class Products extends BaseController
         }
 
         $data = $this->productPayload();
-        $data['slug'] = $this->makeUniqueSlug($data['slug'] !== '' ? $data['slug'] : $data['name'], $id);
         $model->update($id, $data);
 
         try {
@@ -264,7 +263,6 @@ class Products extends BaseController
     {
         return [
             'name' => 'required|max_length[180]',
-            'slug' => 'permit_empty|max_length[200]',
             'sku' => 'permit_empty|max_length[100]',
             'category_id' => 'required|is_natural_no_zero',
             'brand_id' => 'permit_empty|is_natural_no_zero',
@@ -284,7 +282,6 @@ class Products extends BaseController
             'category_id' => (int) $this->request->getPost('category_id'),
             'brand_id' => $this->nullableInt($this->request->getPost('brand_id')),
             'name' => trim((string) $this->request->getPost('name')),
-            'slug' => trim((string) $this->request->getPost('slug')),
             'sku' => $this->nullableString($this->request->getPost('sku')),
             'short_description' => $this->nullableString($this->request->getPost('short_description')),
             'description' => $this->nullableString($this->request->getPost('description')),
@@ -313,7 +310,7 @@ class Products extends BaseController
         return $brandId === null || (new BrandModel())->find($brandId) !== null;
     }
 
-    private function makeUniqueSlug(string $source, ?int $ignoreId = null): string
+    private function makeUniqueSlug(string $source): string
     {
         helper('url');
 
@@ -328,10 +325,6 @@ class Products extends BaseController
 
         while (true) {
             $builder = $db->table('products')->where('slug', $slug);
-            if ($ignoreId !== null) {
-                $builder->where('id !=', $ignoreId);
-            }
-
             if ($builder->countAllResults() === 0) {
                 return $slug;
             }

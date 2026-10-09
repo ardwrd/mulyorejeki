@@ -27,7 +27,7 @@ $pageUrl = static function (int $target) use ($filters): string {
 <form action="<?= site_url('admin/products') ?>" method="get" class="admin-card admin-toolbar" role="search">
   <div>
     <label for="q" class="form-label">Cari produk</label>
-    <input id="q" type="search" name="q" class="form-control" value="<?= esc($filters['q']) ?>" placeholder="Nama, SKU, atau slug">
+    <input id="q" type="search" name="q" class="form-control" value="<?= esc($filters['q']) ?>" placeholder="Nama barang atau SKU">
   </div>
   <div>
     <label for="category" class="form-label">Kategori</label>

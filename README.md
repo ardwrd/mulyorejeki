@@ -93,6 +93,7 @@ Panel admin saat ini mencakup:
 - CSRF protection untuk request form
 - dashboard ringkas
 - tambah, edit, hapus produk
+- slug produk, kategori, dan merek dibuat otomatis saat data ditambahkan dan tetap saat nama diedit
 - status aktif/featured
 - kategori dan merek sebagai relasi produk
 - spesifikasi produk berbasis key/value

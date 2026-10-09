@@ -11,7 +11,7 @@ final class CatalogData
             ['slug' => 'power-tools', 'name' => 'Power Tools', 'description' => 'Gerinda, bor, dan mesin potong', 'icon' => 'bi-lightning-charge'],
             ['slug' => 'fastener', 'name' => 'Baut & Fastener', 'description' => 'Baut, mur, dan ring', 'icon' => 'bi-nut'],
             ['slug' => 'hand-tools', 'name' => 'Hand Tools', 'description' => 'Kunci, tang, dan obeng', 'icon' => 'bi-wrench-adjustable'],
-            ['slug' => 'plumbing', 'name' => 'Plumbing', 'description' => 'Fitting, katup, dan selang', 'icon' => 'bi-pipe'],
+            ['slug' => 'plumbing', 'name' => 'Plumbing', 'description' => 'Fitting, katup, dan selang', 'icon' => 'bi-droplet'],
             ['slug' => 'electrical', 'name' => 'Electrical', 'description' => 'Komponen dan perlengkapan listrik', 'icon' => 'bi-plug'],
         ];
     }

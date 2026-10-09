@@ -33,11 +33,6 @@ $value = static function (string $key, mixed $default = '') {
       <label for="name" class="form-label">Nama <?= strtolower(esc($label)) ?> <span class="text-danger">*</span></label>
       <input id="name" name="name" type="text" class="form-control" value="<?= esc($value('name', $term['name'] ?? '')) ?>" maxlength="120" required autofocus>
     </div>
-    <div class="mb-3">
-      <label for="slug" class="form-label">Slug URL</label>
-      <input id="slug" name="slug" type="text" class="form-control" value="<?= esc($value('slug', $term['slug'] ?? '')) ?>" maxlength="140" placeholder="Otomatis dari nama">
-      <div class="form-text">Kosongkan untuk membuat slug otomatis. Mengubah slug dapat mengubah tautan kategori.</div>
-    </div>
     <?php if ($type === 'categories'): ?>
       <div class="mb-3">
         <label for="description" class="form-label">Deskripsi singkat</label>

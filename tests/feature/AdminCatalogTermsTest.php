@@ -3,6 +3,7 @@
 use App\Database\Seeds\CatalogSeeder;
 use App\Models\BrandModel;
 use App\Models\CategoryModel;
+use App\Models\ProductModel;
 use CodeIgniter\Test\CIUnitTestCase;
 use CodeIgniter\Test\DatabaseTestTrait;
 use CodeIgniter\Test\FeatureTestTrait;
@@ -33,6 +34,9 @@ final class AdminCatalogTermsTest extends CIUnitTestCase
         $this->get('/admin/brands')->assertSee('Makita');
         $this->get('/admin/categories/new')->assertSee('Tambah Kategori');
         $this->get('/admin/brands/new')->assertSee('Tambah Merek');
+        $this->get('/admin/categories/new')->assertDontSee('name="slug"');
+        $this->get('/admin/brands/new')->assertDontSee('name="slug"');
+        $this->get('/admin/products/new')->assertDontSee('name="slug"');
     }
 
     public function testProductFiltersAndDashboardRender(): void
@@ -84,7 +88,7 @@ final class AdminCatalogTermsTest extends CIUnitTestCase
 
         $this->post('/admin/brands/' . $brand['id'], [
             'name' => 'Merek Diperbarui',
-            'slug' => 'merek-baru',
+            'slug' => 'slug-yang-diabaikan',
             'sort_order' => '2',
             'is_active' => '0',
             csrf_token() => csrf_hash(),
@@ -92,6 +96,37 @@ final class AdminCatalogTermsTest extends CIUnitTestCase
 
         $updated = (new BrandModel())->find($brand['id']);
         $this->assertSame('Merek Diperbarui', $updated['name']);
+        $this->assertSame('merek-baru', $updated['slug']);
         $this->assertSame(0, (int) $updated['is_active']);
+    }
+
+    public function testProductSlugIsGeneratedAndDoesNotChangeOnEdit(): void
+    {
+        $this->withSession(['admin_user_id' => 1, 'admin_user_name' => 'Admin']);
+        $category = (new CategoryModel())->where('slug', 'power-tools')->first();
+        $this->assertNotNull($category);
+
+        $this->post('/admin/products', [
+            'name' => 'Bor Listrik Uji',
+            'slug' => 'slug-yang-diabaikan',
+            'category_id' => $category['id'],
+            'is_active' => '1',
+            csrf_token() => csrf_hash(),
+        ])->assertRedirectTo('/admin/products');
+
+        $product = (new ProductModel())->where('slug', 'bor-listrik-uji')->first();
+        $this->assertNotNull($product);
+
+        $this->post('/admin/products/' . $product['id'], [
+            'name' => 'Bor Listrik Baru',
+            'slug' => 'slug-lain-yang-diabaikan',
+            'category_id' => $category['id'],
+            'is_active' => '1',
+            csrf_token() => csrf_hash(),
+        ])->assertRedirectTo('/admin/products/' . $product['id'] . '/edit');
+
+        $updated = (new ProductModel())->find($product['id']);
+        $this->assertSame('Bor Listrik Baru', $updated['name']);
+        $this->assertSame('bor-listrik-uji', $updated['slug']);
     }
 }

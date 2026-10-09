@@ -33,14 +33,14 @@
 
 <main class="section-space">
   <div class="container">
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="catalog-results-bar d-flex justify-content-between align-items-center mb-4">
       <span class="text-secondary small"><strong id="resultCount"><?= count($products) ?></strong> produk ditemukan</span>
     </div>
 
     <div class="row g-4" id="productGrid">
       <?php foreach ($products as $product): ?>
         <?php $searchText = strtolower($product['brand'] . ' ' . $product['name'] . ' ' . $product['category_label'] . ' ' . $product['meta']); ?>
-        <div class="col-6 col-lg-3 catalog-item" data-category="<?= esc($product['category']) ?>" data-search="<?= esc($searchText) ?>">
+        <div class="col-12 col-sm-6 col-lg-3 catalog-item" data-category="<?= esc($product['category']) ?>" data-search="<?= esc($searchText) ?>">
           <article class="product-card catalog-card h-100">
             <a href="<?= site_url('products/' . $product['slug']) ?>" class="product-visual">
               <?php if (! empty($product['badge'])): ?><span class="product-badge"><?= esc($product['badge']) ?></span><?php endif ?>

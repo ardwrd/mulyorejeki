@@ -114,7 +114,6 @@ class CatalogTerms extends BaseController
         $term = $id === null ? null : $this->findTerm($type, $id);
         $rules = [
             'name' => 'required|max_length[120]',
-            'slug' => 'permit_empty|max_length[140]',
             'sort_order' => 'permit_empty|integer',
         ];
         if ($type === 'categories') {
@@ -130,14 +129,14 @@ class CatalogTerms extends BaseController
 
         $model = $this->modelFor($type);
         $name = trim((string) $this->request->getPost('name'));
-        $slugInput = trim((string) $this->request->getPost('slug'));
-        $slugSource = $slugInput !== '' ? $slugInput : ($term['slug'] ?? $name);
         $data = [
             'name' => $name,
-            'slug' => $this->uniqueSlug($type, $slugSource, $id),
             'sort_order' => (int) ($this->request->getPost('sort_order') ?: 0),
             'is_active' => $this->request->getPost('is_active') === '1' ? 1 : 0,
         ];
+        if ($id === null) {
+            $data['slug'] = $this->uniqueSlug($type, $name);
+        }
         if ($type === 'categories') {
             $data['description'] = $this->nullableString($this->request->getPost('description'));
             $data['icon'] = $this->nullableString($this->request->getPost('icon'));
@@ -187,7 +186,7 @@ class CatalogTerms extends BaseController
         return $type === 'categories' ? new CategoryModel() : new BrandModel();
     }
 
-    private function uniqueSlug(string $type, string $source, ?int $ignoreId): string
+    private function uniqueSlug(string $type, string $source): string
     {
         helper('url');
         $base = url_title($source, '-', true);
@@ -200,9 +199,6 @@ class CatalogTerms extends BaseController
 
         while (true) {
             $query = $this->modelFor($type)->where('slug', $slug);
-            if ($ignoreId !== null) {
-                $query->where('id !=', $ignoreId);
-            }
             if ($query->countAllResults() === 0) {
                 return $slug;
             }

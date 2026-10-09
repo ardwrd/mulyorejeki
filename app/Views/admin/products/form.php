@@ -41,16 +41,9 @@ $value = static function (string $key, mixed $default = '') {
           <input id="name" type="text" name="name" class="form-control" value="<?= esc($value('name', $product['name'] ?? '')) ?>" maxlength="180" required>
         </div>
 
-        <div class="row g-3">
-          <div class="col-md-6">
-            <label for="slug" class="form-label">Slug</label>
-            <input id="slug" type="text" name="slug" class="form-control" value="<?= esc($value('slug', $product['slug'] ?? '')) ?>" maxlength="200" placeholder="otomatis-dari-nama">
-            <div class="form-text">Kosongkan untuk membuat slug otomatis.</div>
-          </div>
-          <div class="col-md-6">
-            <label for="sku" class="form-label">SKU</label>
-            <input id="sku" type="text" name="sku" class="form-control" value="<?= esc($value('sku', $product['sku'] ?? '')) ?>" maxlength="100">
-          </div>
+        <div class="mb-3">
+          <label for="sku" class="form-label">SKU <span class="text-secondary fw-normal">(opsional)</span></label>
+          <input id="sku" type="text" name="sku" class="form-control" value="<?= esc($value('sku', $product['sku'] ?? '')) ?>" maxlength="100">
         </div>
 
         <div class="row g-3 mt-0">

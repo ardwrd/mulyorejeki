@@ -8,7 +8,7 @@
         <div class="col-lg-7">
           <h1 class="display-4 hero-title mb-4">Cari pompa, perkakas, atau baut? Mulai dari sini.</h1>
           <p class="lead hero-copy mb-4">Telusuri barang menurut jenis atau merek. Ukuran dan spesifikasi yang tercatat bisa dilihat di halaman produk.</p>
-          <div class="d-flex flex-column flex-sm-row gap-3">
+          <div class="hero-actions d-flex flex-column flex-sm-row gap-3">
             <a class="btn btn-accent btn-lg px-4" href="<?= site_url('products') ?>">Lihat katalog <i class="bi bi-arrow-right ms-2"></i></a>
             <?php if (! empty($contactUrl)): ?><a class="btn btn-outline-dark btn-lg px-4" href="<?= esc($contactUrl) ?>" target="_blank" rel="noopener noreferrer"><i class="bi bi-whatsapp me-2"></i>Tanya stok</a><?php endif ?>
           </div>
@@ -28,7 +28,7 @@
             </div>
             <form class="search-box mt-4" action="<?= site_url('products') ?>" method="get">
               <i class="bi bi-search"></i>
-              <input type="search" name="q" class="form-control" placeholder="Misalnya: pompa atau gerinda" aria-label="Cari produk">
+              <input type="search" name="q" class="form-control" placeholder="Cari nama barang" aria-label="Cari produk">
               <button class="btn btn-dark" type="submit">Cari</button>
             </form>
 
@@ -80,7 +80,7 @@
 
       <div class="row g-4">
         <?php foreach ($featuredProducts as $product): ?>
-          <div class="col-6 col-lg-3">
+          <div class="col-12 col-sm-6 col-lg-3">
             <article class="product-card h-100">
               <a href="<?= site_url('products/' . $product['slug']) ?>" class="product-visual">
                 <?php if (! empty($product['badge'])): ?><span class="product-badge"><?= esc($product['badge']) ?></span><?php endif ?>

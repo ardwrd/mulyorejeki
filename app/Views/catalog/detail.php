@@ -67,7 +67,7 @@
     <div class="section-heading mb-4"><h2 class="mb-0">Barang lain dalam kategori <?= esc($product['category_label']) ?></h2></div>
     <div class="row g-4">
       <?php foreach ($relatedProducts as $related): ?>
-        <div class="col-6 col-lg-3">
+        <div class="col-12 col-sm-6 col-lg-3">
           <article class="product-card h-100">
             <a href="<?= site_url('products/' . $related['slug']) ?>" class="product-visual">
               <?php if (! empty($related['image_url'])): ?>
