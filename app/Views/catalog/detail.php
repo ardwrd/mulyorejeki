@@ -12,7 +12,7 @@
       </ol>
     </nav>
 
-    <div class="row g-5 align-items-start">
+    <div class="row g-4 g-lg-5 align-items-start">
       <div class="col-lg-6">
         <div class="product-detail-visual">
           <?php if (! empty($product['image_url'])): ?>
