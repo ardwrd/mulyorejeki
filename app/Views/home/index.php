@@ -4,7 +4,7 @@
 <main>
   <section class="hero-section">
     <div class="container py-5 py-lg-6">
-      <div class="row align-items-center g-5">
+      <div class="row align-items-center g-4 g-lg-5">
         <div class="col-lg-7">
           <h1 class="display-4 hero-title mb-4">Pompa, gerinda, baut, dan perlengkapan teknik untuk kebutuhan kerja sehari-hari.</h1>
           <p class="lead hero-copy mb-4">Cari produk berdasarkan jenis dan merek, cek spesifikasi dasar, lalu hubungi kami untuk harga dan ketersediaan.</p>
@@ -121,7 +121,7 @@
 
   <section id="about" class="section-space about-section">
     <div class="container">
-      <div class="row g-5 align-items-center">
+      <div class="row g-4 g-lg-5 align-items-center">
         <div class="col-lg-6">
           <div class="about-visual">
             <div class="about-grid"></div>
