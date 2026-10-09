@@ -27,7 +27,7 @@ $pageUrl = static function (int $target) use ($filters): string {
 <form action="<?= site_url('admin/products') ?>" method="get" class="admin-card admin-toolbar" role="search">
   <div>
     <label for="q" class="form-label">Cari produk</label>
-    <input id="q" type="search" name="q" class="form-control" value="<?= esc($filters['q']) ?>" placeholder="Nama barang atau SKU">
+    <input id="q" type="search" name="q" class="form-control" value="<?= esc($filters['q']) ?>" placeholder="Nama atau kode barang">
   </div>
   <div>
     <label for="category" class="form-label">Kategori</label>
@@ -74,7 +74,7 @@ $pageUrl = static function (int $target) use ($filters): string {
         </div>
         <div class="admin-product-info">
           <h3 class="admin-product-title"><?= esc($product['name']) ?></h3>
-          <?php if ($product['sku'] || ! empty($product['is_featured'])): ?><div class="admin-product-sub"><?php if ($product['sku']): ?>SKU <?= esc($product['sku']) ?><?php endif ?><?php if (! empty($product['is_featured'])): ?> <span class="text-warning-emphasis"><?= $product['sku'] ? '· ' : '' ?>Unggulan</span><?php endif ?></div><?php endif ?>
+          <?php if ($product['sku'] || ! empty($product['is_featured'])): ?><div class="admin-product-sub"><?php if ($product['sku']): ?>Kode <?= esc($product['sku']) ?><?php endif ?><?php if (! empty($product['is_featured'])): ?> <span class="text-warning-emphasis"><?= $product['sku'] ? '· ' : '' ?>Unggulan</span><?php endif ?></div><?php endif ?>
           <div class="admin-product-sub d-xl-none"><?= esc($product['category_name']) ?> · <?= esc($product['brand_name'] ?: 'Tanpa merek') ?></div>
         </div>
         <div class="admin-product-extra"><?= esc($product['category_name']) ?><br><span class="text-secondary"><?= esc($product['brand_name'] ?: 'Tanpa merek') ?></span></div>

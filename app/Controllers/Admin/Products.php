@@ -86,6 +86,8 @@ class Products extends BaseController
         $model = new ProductModel();
         $data = $this->productPayload();
         $data['slug'] = $this->makeUniqueSlug($data['name']);
+        $data['icon'] = $this->categoryIcon($data['category_id']);
+        $data['sort_order'] = $this->nextSortOrder();
 
         $productId = $model->insert($data, true);
         if ($productId === false) {
@@ -136,6 +138,9 @@ class Products extends BaseController
         }
 
         $data = $this->productPayload();
+        if ((int) $product['category_id'] !== $data['category_id']) {
+            $data['icon'] = $this->categoryIcon($data['category_id']);
+        }
         $model->update($id, $data);
 
         try {
@@ -269,9 +274,7 @@ class Products extends BaseController
             'short_description' => 'permit_empty|max_length[500]',
             'description' => 'permit_empty|max_length[10000]',
             'meta' => 'permit_empty|max_length[160]',
-            'icon' => 'permit_empty|max_length[80]',
             'badge' => 'permit_empty|max_length[80]',
-            'sort_order' => 'permit_empty|integer',
             'specifications_text' => 'permit_empty|max_length[10000]',
         ];
     }
@@ -286,13 +289,11 @@ class Products extends BaseController
             'short_description' => $this->nullableString($this->request->getPost('short_description')),
             'description' => $this->nullableString($this->request->getPost('description')),
             'meta' => $this->nullableString($this->request->getPost('meta')),
-            'icon' => $this->nullableString($this->request->getPost('icon')) ?? 'bi-tools',
             'badge' => $this->nullableString($this->request->getPost('badge')),
             'specifications' => json_encode(
                 $this->parseSpecifications((string) $this->request->getPost('specifications_text')),
                 JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
             ),
-            'sort_order' => (int) ($this->request->getPost('sort_order') ?: 0),
             'is_featured' => $this->request->getPost('is_featured') === '1' ? 1 : 0,
             'is_active' => $this->request->getPost('is_active') === '1' ? 1 : 0,
         ];
@@ -308,6 +309,20 @@ class Products extends BaseController
         $brandId = $this->nullableInt($this->request->getPost('brand_id'));
 
         return $brandId === null || (new BrandModel())->find($brandId) !== null;
+    }
+
+    private function categoryIcon(int $categoryId): string
+    {
+        $category = (new CategoryModel())->find($categoryId);
+
+        return (string) ($category['icon'] ?: 'bi-grid');
+    }
+
+    private function nextSortOrder(): int
+    {
+        $row = db_connect()->table('products')->selectMax('sort_order')->get()->getRowArray();
+
+        return isset($row['sort_order']) ? (int) $row['sort_order'] + 1 : 0;
     }
 
     private function makeUniqueSlug(string $source): string

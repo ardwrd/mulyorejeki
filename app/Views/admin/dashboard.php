@@ -32,7 +32,7 @@
             <span class="admin-term-icon"><i class="bi bi-box-seam"></i></span>
             <div class="admin-term-details">
               <div class="admin-term-title"><h2><?= esc($product['name']) ?></h2><span class="admin-status <?= $product['is_active'] ? 'is-active' : 'is-inactive' ?>"><?= $product['is_active'] ? 'Aktif' : 'Nonaktif' ?></span></div>
-              <p><?= esc($product['category_name']) ?> · <?= esc($product['sku'] ?: 'Tanpa SKU') ?></p>
+              <p><?= esc($product['category_name']) ?><?php if ($product['sku']): ?> · Kode <?= esc($product['sku']) ?><?php endif ?></p>
             </div>
             <div class="admin-term-actions"><a href="<?= site_url('admin/products/' . $product['id'] . '/edit') ?>" class="btn btn-outline-dark btn-sm">Edit</a></div>
           </div>

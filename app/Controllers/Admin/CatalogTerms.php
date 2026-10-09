@@ -114,13 +114,9 @@ class CatalogTerms extends BaseController
         $term = $id === null ? null : $this->findTerm($type, $id);
         $rules = [
             'name' => 'required|max_length[120]',
-            'sort_order' => 'permit_empty|integer',
         ];
         if ($type === 'categories') {
             $rules['description'] = 'permit_empty|max_length[500]';
-            $rules['icon'] = 'permit_empty|max_length[80]';
-        } else {
-            $rules['logo_url'] = 'permit_empty|valid_url|max_length[500]';
         }
 
         if (! $this->validate($rules)) {
@@ -131,17 +127,17 @@ class CatalogTerms extends BaseController
         $name = trim((string) $this->request->getPost('name'));
         $data = [
             'name' => $name,
-            'sort_order' => (int) ($this->request->getPost('sort_order') ?: 0),
             'is_active' => $this->request->getPost('is_active') === '1' ? 1 : 0,
         ];
         if ($id === null) {
             $data['slug'] = $this->uniqueSlug($type, $name);
+            $data['sort_order'] = $this->nextSortOrder($type);
         }
         if ($type === 'categories') {
             $data['description'] = $this->nullableString($this->request->getPost('description'));
-            $data['icon'] = $this->nullableString($this->request->getPost('icon'));
-        } else {
-            $data['logo_url'] = $this->nullableString($this->request->getPost('logo_url'));
+            if ($id === null) {
+                $data['icon'] = 'bi-grid';
+            }
         }
 
         $saved = $id === null ? $model->insert($data) : $model->update($id, $data);
@@ -184,6 +180,13 @@ class CatalogTerms extends BaseController
     private function modelFor(string $type): CategoryModel|BrandModel
     {
         return $type === 'categories' ? new CategoryModel() : new BrandModel();
+    }
+
+    private function nextSortOrder(string $type): int
+    {
+        $row = db_connect()->table($type)->selectMax('sort_order')->get()->getRowArray();
+
+        return isset($row['sort_order']) ? (int) $row['sort_order'] + 1 : 0;
     }
 
     private function uniqueSlug(string $type, string $source): string

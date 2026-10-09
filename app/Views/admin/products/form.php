@@ -43,7 +43,7 @@ $value = static function (string $key, mixed $default = '') {
         </div>
 
         <div class="mb-3">
-          <label for="sku" class="form-label">SKU <span class="text-secondary fw-normal">(opsional)</span></label>
+          <label for="sku" class="form-label">Kode barang <span class="text-secondary fw-normal">(opsional)</span></label>
           <input id="sku" type="text" name="sku" class="form-control" value="<?= esc($value('sku', $product['sku'] ?? '')) ?>" maxlength="100">
         </div>
 
@@ -73,12 +73,12 @@ $value = static function (string $key, mixed $default = '') {
         </div>
 
         <div class="mt-3">
-          <label for="short_description" class="form-label">Deskripsi singkat</label>
+          <label for="short_description" class="form-label">Ringkasan produk</label>
           <textarea id="short_description" name="short_description" class="form-control" rows="2" maxlength="500"><?= esc($value('short_description', $product['short_description'] ?? '')) ?></textarea>
         </div>
 
         <div class="mt-3">
-          <label for="description" class="form-label">Deskripsi</label>
+          <label for="description" class="form-label">Penjelasan produk</label>
           <textarea id="description" name="description" class="form-control" rows="5" maxlength="10000"><?= esc($value('description', $product['description'] ?? '')) ?></textarea>
         </div>
       </div>
@@ -95,25 +95,17 @@ $value = static function (string $key, mixed $default = '') {
 
     <div class="col-xl-4">
       <div class="admin-card admin-advanced-card p-4 mb-4">
-        <button class="admin-advanced-toggle d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#productDisplayOptions" aria-expanded="<?= $formErrors ? 'true' : 'false' ?>" aria-controls="productDisplayOptions"><span><i class="bi bi-sliders me-2"></i>Opsi tampilan <small>· opsional</small></span><i class="bi bi-chevron-down"></i></button>
-        <h2 class="h5 fw-bold mb-3 d-none d-md-block">Tampilan katalog</h2>
+        <button class="admin-advanced-toggle d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#productDisplayOptions" aria-expanded="<?= $formErrors ? 'true' : 'false' ?>" aria-controls="productDisplayOptions"><span><i class="bi bi-sliders me-2"></i>Info tambahan <small>· opsional</small></span><i class="bi bi-chevron-down"></i></button>
+        <h2 class="h5 fw-bold mb-3 d-none d-md-block">Tampilan di website</h2>
         <div class="collapse d-md-block <?= $formErrors ? 'show' : '' ?>" id="productDisplayOptions">
         <div class="mb-3">
-          <label for="meta" class="form-label">Keterangan di kartu produk</label>
+          <label for="meta" class="form-label">Info singkat di daftar produk</label>
           <input id="meta" type="text" name="meta" class="form-control" value="<?= esc($value('meta', $product['meta'] ?? '')) ?>" maxlength="160" placeholder="720 W / Stainless Steel / M6–M20">
+          <div class="form-text">Contoh: daya, bahan, atau ukuran. Boleh dikosongkan.</div>
         </div>
         <div class="mb-3">
-          <label for="icon" class="form-label">Ikon jika foto belum ada</label>
-          <input id="icon" type="text" name="icon" class="form-control" value="<?= esc($value('icon', $product['icon'] ?? 'bi-tools')) ?>" maxlength="80" placeholder="bi-tools">
-          <div class="form-text">Gunakan nama ikon Bootstrap, misalnya bi-tools.</div>
-        </div>
-        <div class="mb-3">
-          <label for="badge" class="form-label">Label pada foto</label>
-          <input id="badge" type="text" name="badge" class="form-control" value="<?= esc($value('badge', $product['badge'] ?? '')) ?>" maxlength="80" placeholder="Pilihan">
-        </div>
-        <div class="mb-3">
-          <label for="sort_order" class="form-label">Urutan</label>
-          <input id="sort_order" type="number" name="sort_order" class="form-control" value="<?= esc((string) $value('sort_order', $product['sort_order'] ?? 0)) ?>">
+          <label for="badge" class="form-label">Penanda di atas foto <span class="text-secondary fw-normal">(opsional)</span></label>
+          <input id="badge" type="text" name="badge" class="form-control" value="<?= esc($value('badge', $product['badge'] ?? '')) ?>" maxlength="80" placeholder="Baru atau Promo">
         </div>
         </div>
         <input type="hidden" name="is_featured" value="0">
@@ -124,7 +116,7 @@ $value = static function (string $key, mixed $default = '') {
         <input type="hidden" name="is_active" value="0">
         <div class="form-check form-switch">
           <input class="form-check-input" type="checkbox" role="switch" id="is_active" name="is_active" value="1" <?= (string) $value('is_active', $product['is_active'] ?? 1) === '1' ? 'checked' : '' ?>>
-          <label class="form-check-label" for="is_active">Aktif di katalog</label>
+          <label class="form-check-label" for="is_active">Tampilkan di katalog</label>
         </div>
       </div>
 

@@ -27,8 +27,8 @@
             <h2><?= esc($term['name']) ?></h2>
             <span class="admin-status <?= $term['is_active'] ? 'is-active' : 'is-inactive' ?>"><?= $term['is_active'] ? 'Aktif' : 'Nonaktif' ?></span>
           </div>
-          <p><?= esc($type === 'categories' ? ($term['description'] ?: 'Belum ada deskripsi') : $term['slug']) ?></p>
-          <span class="admin-term-meta"><?= esc((string) $term['product_count']) ?> produk <span aria-hidden="true">·</span> Urutan <?= esc((string) $term['sort_order']) ?></span>
+          <?php if ($type === 'categories'): ?><p><?= esc($term['description'] ?: 'Belum ada deskripsi') ?></p><?php endif ?>
+          <span class="admin-term-meta"><?= esc((string) $term['product_count']) ?> produk</span>
         </div>
         <div class="admin-term-actions">
           <a href="<?= site_url('admin/' . $type . '/' . $term['id'] . '/edit') ?>" class="btn btn-outline-dark btn-sm"><i class="bi bi-pencil me-1"></i> Edit</a>
