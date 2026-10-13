@@ -5,7 +5,7 @@
   <div class="container">
     <div class="row align-items-end g-3">
       <div class="col-lg-7"><h1>Katalog produk</h1></div>
-      <div class="col-lg-5"><p class="text-secondary mb-0">Cari nama barang atau merek, lalu saring menurut kategori. Harga dan stok perlu dikonfirmasi sebelum membeli.</p></div>
+      <div class="col-lg-5"><p class="text-secondary mb-0"><?= esc($site['catalog_text']) ?></p></div>
     </div>
   </div>
 </header>

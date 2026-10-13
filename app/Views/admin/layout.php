@@ -7,7 +7,7 @@
   <title><?= esc($title ?? 'Admin Mulyorejeki') ?></title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
-  <link href="<?= base_url('assets/css/admin.css') ?>?v=2" rel="stylesheet">
+  <link href="<?= base_url('assets/css/admin.css') ?>?v=3" rel="stylesheet">
 </head>
 <body>
 <?php $currentPage = trim(uri_string(), '/'); ?>
@@ -28,6 +28,7 @@
         <a href="<?= site_url('admin/products') ?>" class="<?= str_starts_with($currentPage, 'admin/products') ? 'active' : '' ?>" <?= str_starts_with($currentPage, 'admin/products') ? 'aria-current="page"' : '' ?>><i class="bi bi-box-seam"></i><span>Produk</span></a>
         <a href="<?= site_url('admin/categories') ?>" class="<?= str_starts_with($currentPage, 'admin/categories') ? 'active' : '' ?>" <?= str_starts_with($currentPage, 'admin/categories') ? 'aria-current="page"' : '' ?>><i class="bi bi-grid"></i><span>Kategori</span></a>
         <a href="<?= site_url('admin/brands') ?>" class="<?= str_starts_with($currentPage, 'admin/brands') ? 'active' : '' ?>" <?= str_starts_with($currentPage, 'admin/brands') ? 'aria-current="page"' : '' ?>><i class="bi bi-tags"></i><span>Merek</span></a>
+        <a href="<?= site_url('admin/site') ?>" class="<?= $currentPage === 'admin/site' ? 'active' : '' ?>" <?= $currentPage === 'admin/site' ? 'aria-current="page"' : '' ?>><i class="bi bi-window-sidebar"></i><span>Pengaturan Situs</span></a>
       </nav>
 
       <div class="admin-sidebar-bottom">
@@ -41,7 +42,7 @@
     <header class="admin-topbar">
       <div class="admin-topbar-start">
         <button type="button" class="btn admin-menu-button d-lg-none" data-bs-toggle="offcanvas" data-bs-target="#adminSidebar" aria-controls="adminSidebar" aria-label="Buka navigasi"><i class="bi bi-list"></i></button>
-        <span class="admin-topbar-title">Kelola katalog</span>
+        <span class="admin-topbar-title">Kelola website</span>
       </div>
       <div class="admin-topbar-end">
         <div class="admin-user">

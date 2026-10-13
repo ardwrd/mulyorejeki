@@ -16,9 +16,9 @@ final class StoreContact
 
     public const SUNDAY_HOURS = 'Minggu tutup';
 
-    public static function whatsappUrl(string $message = ''): ?string
+    public static function whatsappUrl(string $message = '', ?array $site = null): ?string
     {
-        $number = self::number();
+        $number = self::number($site);
 
         if ($number === null) {
             return null;
@@ -29,28 +29,34 @@ final class StoreContact
         return $message === '' ? $url : $url . '?text=' . rawurlencode($message);
     }
 
-    public static function phoneDisplay(): ?string
+    public static function phoneDisplay(?array $site = null): ?string
     {
-        $number = self::number();
+        $number = self::number($site);
 
-        return $number === null ? null : ($number === self::PHONE_E164 ? self::PHONE_DISPLAY : '+' . $number);
+        if ($number === null) {
+            return null;
+        }
+
+        return $site !== null ? trim((string) ($site['phone'] ?? '')) : ($number === self::PHONE_E164 ? self::PHONE_DISPLAY : '+' . $number);
     }
 
-    public static function phoneUrl(): ?string
+    public static function phoneUrl(?array $site = null): ?string
     {
-        $number = self::number();
+        $number = self::number($site);
 
         return $number === null ? null : 'tel:+' . $number;
     }
 
-    public static function mapsUrl(): string
+    public static function mapsUrl(?array $site = null): string
     {
-        return 'https://www.google.com/maps/search/?api=1&query=' . rawurlencode(self::ADDRESS);
+        return 'https://www.google.com/maps/search/?api=1&query=' . rawurlencode((string) ($site['address'] ?? self::ADDRESS));
     }
 
-    private static function number(): ?string
+    private static function number(?array $site = null): ?string
     {
-        $configuredNumber = trim((string) env('store.whatsappNumber', ''));
+        $configuredNumber = $site !== null
+            ? trim((string) ($site['phone'] ?? ''))
+            : trim((string) env('store.whatsappNumber', ''));
         $number = preg_replace('/\D+/', '', $configuredNumber !== '' ? $configuredNumber : self::PHONE_E164);
 
         if (str_starts_with($number, '0')) {

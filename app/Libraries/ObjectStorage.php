@@ -22,6 +22,22 @@ final class ObjectStorage
      */
     public function storeProductImage(UploadedFile $file): array
     {
+        return $this->storeImage($file, 'products');
+    }
+
+    /**
+     * @return array{key: string, url: string}
+     */
+    public function storeSiteLogo(UploadedFile $file): array
+    {
+        return $this->storeImage($file, 'site/logo');
+    }
+
+    /**
+     * @return array{key: string, url: string}
+     */
+    private function storeImage(UploadedFile $file, string $folder): array
+    {
         if (! $file->isValid()) {
             throw new RuntimeException($file->getErrorString() ?: 'File upload tidak valid.');
         }
@@ -35,7 +51,7 @@ final class ObjectStorage
         };
 
         $key = sprintf(
-            'products/%s/%s.%s',
+            $folder . '/%s/%s.%s',
             date('Y/m'),
             bin2hex(random_bytes(16)),
             $extension

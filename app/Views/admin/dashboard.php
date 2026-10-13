@@ -48,6 +48,7 @@
         <a href="<?= site_url('admin/products/new') ?>" class="btn btn-accent text-start"><i class="bi bi-plus-lg me-2"></i> Tambah produk</a>
         <a href="<?= site_url('admin/categories') ?>" class="btn btn-outline-dark text-start"><i class="bi bi-grid me-2"></i> Kelola kategori</a>
         <a href="<?= site_url('admin/brands') ?>" class="btn btn-outline-dark text-start"><i class="bi bi-tags me-2"></i> Kelola merek</a>
+        <a href="<?= site_url('admin/site') ?>" class="btn btn-outline-dark text-start"><i class="bi bi-window-sidebar me-2"></i> Ubah logo &amp; isi website</a>
       </div>
     </section>
   </div>

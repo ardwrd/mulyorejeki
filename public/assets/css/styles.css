@@ -71,6 +71,9 @@ a { color: inherit; }
   letter-spacing: .04em;
 }
 
+.brand-mark.brand-logo { width: auto; min-width: 42px; background: transparent; }
+.brand-logo img { display: block; width: auto; max-width: 120px; height: 100%; object-fit: contain; }
+
 .navbar {
   --bs-navbar-padding-y: 0;
 }

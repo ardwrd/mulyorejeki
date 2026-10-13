@@ -6,8 +6,8 @@
     <div class="container py-5 py-lg-6">
       <div class="row align-items-center g-4 g-lg-5">
         <div class="col-lg-7">
-          <h1 class="display-4 hero-title mb-4">Cari pompa, perkakas, atau baut? Mulai dari sini.</h1>
-          <p class="lead hero-copy mb-4">Telusuri barang menurut jenis atau merek. Ukuran dan spesifikasi yang tercatat bisa dilihat di halaman produk.</p>
+          <h1 class="display-4 hero-title mb-4"><?= esc($site['hero_title']) ?></h1>
+          <p class="lead hero-copy mb-4"><?= esc($site['hero_text']) ?></p>
           <div class="hero-actions d-flex flex-column flex-sm-row gap-3">
             <a class="btn btn-accent btn-lg px-4" href="<?= site_url('products') ?>">Lihat katalog <i class="bi bi-arrow-right ms-2"></i></a>
             <?php if (! empty($contactUrl)): ?><a class="btn btn-outline-dark btn-lg px-4" href="<?= esc($contactUrl) ?>" target="_blank" rel="noopener noreferrer"><i class="bi bi-whatsapp me-2"></i>Tanya stok</a><?php endif ?>
@@ -50,7 +50,7 @@
   <section id="categories" class="section-space bg-white">
     <div class="container">
       <div class="section-heading d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-4">
-        <h2 class="mb-0">Cari berdasarkan jenis barang</h2>
+        <h2 class="mb-0"><?= esc($site['categories_title']) ?></h2>
         <a href="<?= site_url('products') ?>" class="text-link">Lihat semua produk <i class="bi bi-arrow-right ms-1"></i></a>
       </div>
 
@@ -74,7 +74,7 @@
   <section class="section-space section-muted">
     <div class="container">
       <div class="section-heading d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-4">
-        <h2 class="mb-0">Lihat beberapa produk</h2>
+        <h2 class="mb-0"><?= esc($site['products_title']) ?></h2>
         <a href="<?= site_url('products') ?>" class="text-link">Buka katalog <i class="bi bi-arrow-right ms-1"></i></a>
       </div>
 
@@ -107,8 +107,8 @@
     <div class="container">
       <div class="row align-items-center g-4">
         <div class="col-lg-4">
-          <h2>Merek di katalog</h2>
-          <p class="text-secondary mb-0">Merek yang tercantum pada produk Mulyorejeki. Ketersediaan tiap barang bisa berubah.</p>
+          <h2><?= esc($site['brands_title']) ?></h2>
+          <p class="text-secondary mb-0"><?= esc($site['brands_text']) ?></p>
         </div>
         <div class="col-lg-8">
           <div class="brand-grid">
@@ -129,8 +129,8 @@
           </div>
         </div>
         <div class="col-lg-6">
-          <h2 class="text-white">Lihat detail barang sebelum memilih.</h2>
-          <p class="about-copy">Di sini Anda bisa melihat nama, merek, ukuran, dan spesifikasi yang sudah dicatat. Harga serta stok perlu dipastikan langsung sebelum membeli.</p>
+          <h2 class="text-white"><?= esc($site['about_title']) ?></h2>
+          <p class="about-copy"><?= esc($site['about_text']) ?></p>
           <div class="row g-3 mt-3">
             <div class="col-sm-6"><div class="feature-line"><i class="bi bi-check2-circle"></i><span>Nama dan tipe barang</span></div></div>
             <div class="col-sm-6"><div class="feature-line"><i class="bi bi-check2-circle"></i><span>Ukuran dan spesifikasi</span></div></div>
@@ -148,8 +148,8 @@
       <div class="contact-box">
         <div class="row align-items-center g-4">
           <div class="col-lg-8">
-            <h2 class="mb-2">Mencari ukuran atau tipe lain?</h2>
-            <p class="text-secondary mb-0">Kirim nama dan ukuran barang lewat WhatsApp, atau datang langsung ke toko.</p>
+            <h2 class="mb-2"><?= esc($site['contact_title']) ?></h2>
+            <p class="text-secondary mb-0"><?= esc($site['contact_text']) ?></p>
           </div>
           <div class="col-lg-4 text-lg-end">
             <a href="<?= esc($contactUrl) ?>" class="btn btn-accent btn-lg px-4" target="_blank" rel="noopener noreferrer"><i class="bi bi-whatsapp me-2"></i>Chat WhatsApp</a>
@@ -158,12 +158,12 @@
         <div class="row g-3 mt-3 pt-3 border-top">
           <div class="col-md-7">
             <strong class="d-block mb-1">Alamat toko</strong>
-            <p class="text-secondary mb-2"><?= esc(\App\Libraries\StoreContact::ADDRESS) ?></p>
-            <a href="<?= esc(\App\Libraries\StoreContact::mapsUrl()) ?>" target="_blank" rel="noopener noreferrer" class="text-link">Buka peta <i class="bi bi-arrow-up-right"></i></a>
+            <p class="text-secondary mb-2"><?= esc($site['address']) ?></p>
+            <a href="<?= esc(\App\Libraries\StoreContact::mapsUrl($site)) ?>" target="_blank" rel="noopener noreferrer" class="text-link">Buka peta <i class="bi bi-arrow-up-right"></i></a>
           </div>
           <div class="col-md-5">
             <strong class="d-block mb-1">Jam buka</strong>
-            <p class="text-secondary mb-0"><?= esc(\App\Libraries\StoreContact::WEEKDAY_HOURS) ?><br><?= esc(\App\Libraries\StoreContact::SATURDAY_HOURS) ?><br><?= esc(\App\Libraries\StoreContact::SUNDAY_HOURS) ?></p>
+            <p class="text-secondary mb-0"><?= esc($site['weekday_hours']) ?><br><?= esc($site['saturday_hours']) ?><br><?= esc($site['sunday_hours']) ?></p>
           </div>
         </div>
       </div>

@@ -37,6 +37,10 @@ $routes->group('admin', ['filter' => 'adminAuth'], static function (RouteCollect
     $routes->post('brands/(:num)', 'Admin\CatalogTerms::updateBrand/$1');
     $routes->post('brands/(:num)/delete', 'Admin\CatalogTerms::deleteBrand/$1');
 
+    $routes->get('site', 'Admin\SiteSettings::index');
+    $routes->post('site', 'Admin\SiteSettings::update');
+    $routes->post('site/logo/delete', 'Admin\SiteSettings::removeLogo');
+
     $routes->get('profile', 'Admin\Profile::index');
     $routes->post('profile', 'Admin\Profile::updateDetails');
     $routes->post('profile/password', 'Admin\Profile::changePassword');

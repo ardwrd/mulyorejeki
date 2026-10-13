@@ -6,10 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="<?= esc($description ?? 'Katalog produk Mulyorejeki') ?>">
   <title><?= esc($title ?? 'Mulyorejeki') ?></title>
+  <?php if ($site['logo_url'] !== ''): ?><link rel="icon" href="<?= esc($site['logo_url']) ?>"><?php endif ?>
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="<?= base_url('assets/css/styles.css') ?>">
+  <link rel="stylesheet" href="<?= base_url('assets/css/styles.css') ?>?v=3">
   <link rel="stylesheet" href="<?= base_url('assets/css/refinement.css') ?>?v=2">
   <link rel="stylesheet" href="<?= base_url('assets/css/product-images.css') ?>">
 </head>
@@ -24,7 +25,7 @@
   <nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top">
     <div class="container py-2">
       <a class="navbar-brand brand-lockup" href="<?= site_url('/') ?>" aria-label="Mulyorejeki">
-        <span class="brand-mark">MR</span>
+        <span class="brand-mark <?= $site['logo_url'] !== '' ? 'brand-logo' : '' ?>"><?php if ($site['logo_url'] !== ''): ?><img src="<?= esc($site['logo_url']) ?>" alt=""><?php else: ?>MR<?php endif ?></span>
         <span><strong>MULYOREJEKI</strong><small>TOKO TEKNIK</small></span>
       </a>
 
@@ -52,10 +53,10 @@
       <div class="row g-4">
         <div class="col-lg-4">
           <a class="brand-lockup footer-brand" href="<?= site_url('/') ?>">
-            <span class="brand-mark">MR</span>
+            <span class="brand-mark <?= $site['logo_url'] !== '' ? 'brand-logo' : '' ?>"><?php if ($site['logo_url'] !== ''): ?><img src="<?= esc($site['logo_url']) ?>" alt=""><?php else: ?>MR<?php endif ?></span>
             <span><strong>MULYOREJEKI</strong><small>TOKO TEKNIK</small></span>
           </a>
-          <p class="footer-copy mt-3 mb-0">Lihat pompa, perkakas, baut, dan barang teknik lain di katalog toko.</p>
+          <p class="footer-copy mt-3 mb-0"><?= esc($site['footer_text']) ?></p>
         </div>
         <div class="col-6 col-lg-2">
           <h6>Menu</h6>
@@ -70,12 +71,12 @@
         </div>
         <div class="col-lg-4">
           <h6>Alamat &amp; jam buka</h6>
-          <a href="<?= esc(StoreContact::mapsUrl()) ?>" target="_blank" rel="noopener noreferrer"><?= esc(StoreContact::ADDRESS) ?> <i class="bi bi-arrow-up-right"></i></a>
-          <p class="mb-1"><?= esc(StoreContact::WEEKDAY_HOURS) ?></p>
-          <p class="mb-1"><?= esc(StoreContact::SATURDAY_HOURS) ?></p>
-          <p class="mb-2"><?= esc(StoreContact::SUNDAY_HOURS) ?></p>
+          <a href="<?= esc(StoreContact::mapsUrl($site)) ?>" target="_blank" rel="noopener noreferrer"><?= esc($site['address']) ?> <i class="bi bi-arrow-up-right"></i></a>
+          <p class="mb-1"><?= esc($site['weekday_hours']) ?></p>
+          <p class="mb-1"><?= esc($site['saturday_hours']) ?></p>
+          <p class="mb-2"><?= esc($site['sunday_hours']) ?></p>
           <?php if (! empty($contactUrl)): ?>
-            <a href="<?= esc($contactUrl) ?>" target="_blank" rel="noopener noreferrer">WhatsApp <?= esc(StoreContact::phoneDisplay()) ?> <i class="bi bi-arrow-up-right"></i></a>
+            <a href="<?= esc($contactUrl) ?>" target="_blank" rel="noopener noreferrer">WhatsApp <?= esc(StoreContact::phoneDisplay($site)) ?> <i class="bi bi-arrow-up-right"></i></a>
           <?php else: ?>
             <p class="mb-0">Harga dan ketersediaan barang perlu dikonfirmasi sebelum membeli.</p>
           <?php endif ?>

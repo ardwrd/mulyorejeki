@@ -103,6 +103,10 @@ textarea.form-control { min-height: auto; }
 .admin-form-side { display: grid; gap: 1rem; }
 .admin-form-actions { display: grid; gap: .6rem; }
 .admin-form-actions .btn { min-height: 44px; }
+.admin-logo-preview { display: flex; align-items: center; gap: .9rem; min-height: 92px; padding: 1rem; border: 1px solid var(--admin-line); border-radius: 8px; background: #f8fafb; color: var(--admin-muted); font-size: .86rem; }
+.admin-logo-preview img { display: block; max-width: min(100%, 260px); max-height: 90px; object-fit: contain; }
+.admin-site-actions { display: flex; justify-content: flex-end; margin-top: 1.2rem; }
+.admin-site-actions .btn { min-width: 200px; }
 .admin-image-card { height: 100%; padding: .65rem; border: 1px solid var(--admin-line); border-radius: 10px; }
 .admin-image-card img { display: block; width: 100%; aspect-ratio: 1; object-fit: contain; background: #f6f7f8; border-radius: 7px; }
 .admin-image-actions { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .65rem; }
@@ -155,6 +159,7 @@ textarea.form-control { min-height: auto; }
   .admin-recent-list .admin-term-actions { grid-column: 3; grid-row: 1; }
   .admin-recent-list .admin-term-actions .btn { padding: .28rem .5rem; font-size: .75rem; }
   .admin-form-side { grid-template-columns: minmax(0,1fr); }
+  .admin-site-actions .btn { width: 100%; }
   .admin-product-form > .row { --bs-gutter-y: 1rem; }
   .admin-product-form .admin-card.p-4 { padding: 1rem !important; }
   .admin-advanced-toggle + .collapse { margin-top: 1rem; }
